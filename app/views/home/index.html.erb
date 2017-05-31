@@ -1,0 +1,10 @@
+<script>
+var url = window.location.hostname+':'+window.location.port
+var dispatcher = new WebSocketRails(url+'/websocket');
+var test = {text: 'hello world'}
+dispatcher.trigger('game.connection', test);
+//get my message
+dispatcher.bind('game.connection_success', function(task) {
+  $('body').append(task.message)
+});
+</script>
