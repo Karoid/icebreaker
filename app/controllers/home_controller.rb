@@ -10,11 +10,6 @@ class HomeController < ApplicationController
     end
     
     
-    def join_room
-        
-        
-    end
-    
     def check
         @room_create = Room.all
         @player_create = Player.all
@@ -29,9 +24,4 @@ class HomeController < ApplicationController
        
        redirect_to '/home/check'
     end
-    
-   
-    
-    
-    
 end
