@@ -3,13 +3,13 @@
     <button type=submit>방만들기</button>
 </form>
 
-<button id = "button1" onclick='join_button_click()'>참여하기</button>
-    
+<button id = "button1">참여하기</button>
+
 
 <script>
     var url = window.location.hostname+':'+window.location.port
     var dispatcher = new WebSocketRails(url+'/websocket');
-    
+
     var test = {text: 'hello world'}
     dispatcher.trigger('game.connection', test);
     //get my message
@@ -17,10 +17,23 @@
       $('body').append(task.message)
     });
 
+    $('#button1').on('click', function(){
+        var roomcode = prompt('방 번호를 입력하세요')
+        dispatcher.trigger('game.room_connect', roomcode);
+        dispatcher.bind('game.room_connect_status',function(task){
+          if (task.status){
+            window.location = '/home/3'
+          }else {
+            alert(task.message)
+            dispatcher.unbind('game.room_connect_status')
+          }
+        })
+    })
 /*
+// 기존 코드
+// dispatcher.unbind를 해주지 않으면 클릭할때마다 dispatcher.bind가 생겨서 실패문구가 두번씩 뜬다
 function join_button_click(){
-    
-}*/
+
 
     $(document).on('click', '#button1', function(){
         var roomcode = prompt('방 번호를 입력하세요')
@@ -32,6 +45,7 @@ function join_button_click(){
             //window.location = '/home/3'
         })
     })
+}*/
 
 
 </script>
