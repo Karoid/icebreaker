@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   
   devise_for :users
   root 'home#index'
-  get 'home/index'
-  get 'home/3'
   
+  get 'home/3'
+  # url을 받으면 => home controller에 check으로 가라
+  get 'home/check' => 'home#check'
+  get 'home/create_room' => 'home#create_room'
+  get '/home/create_player'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

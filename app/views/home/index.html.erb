@@ -1,3 +1,9 @@
+
+<form method="get" action="home/create_room">
+    <button type=submit>방만들기</button>
+</form>
+<button id = "button1" onclick='join_button_click()'>참여하기</button>
+
 <script>
 var url = window.location.hostname+':'+window.location.port
 var dispatcher = new WebSocketRails(url+'/websocket');
@@ -7,4 +13,12 @@ dispatcher.trigger('game.connection', test);
 dispatcher.bind('game.connection_success', function(task) {
   $('body').append(task.message)
 });
+
+
+$(document).on('click', '#button1', function(){
+    var roomcode = prompt('방 번호를 입력하세요')
+    alert(roomcode);
+})
+
+
 </script>
