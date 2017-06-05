@@ -11,7 +11,7 @@ class HomeController < ApplicationController
        create.save
        host = Player.new
        host.user_id = current_user.id
-       host.room_id = $r
+       host.room_id = create.id
        host.point = 1
        host.save
        
@@ -20,10 +20,11 @@ class HomeController < ApplicationController
     
 
     def join_room
-        unless Player.where(user_id: current_user.id).exists?
+        room_id = Room.where(code: params[:room_code]).limit(1)[0].id
+        unless Player.where(user_id: current_user.id, room_id: room_id).exists?
            play = Player.new
            play.user_id = current_user.id
-           play.room_id = $r
+           play.room_id = room_id
            play.save
         end
        
