@@ -54,7 +54,7 @@
         dispatcher.trigger('game.room_connect', roomcode);
         dispatcher.bind('game.room_connect_status',function(task){
           if (task.status){
-            window.location = '/home/game'
+            window.location = '/home/join_room/'+roomcode
           }else {
             alert(task.message)
             dispatcher.unbind('game.room_connect_status')
