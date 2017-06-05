@@ -8,9 +8,9 @@ class GameController < WebsocketRails::BaseController
   end
 
   def room_connect
-    
     if Room.find_by_code(message) != nil
       send_message :room_connect_status, {message: 'room connection success', status:true}, :namespace => 'game'
+      
     else
       send_message :room_connect_status, {message: 'There is no room', status:false}, :namespace => 'game'
     end

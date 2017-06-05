@@ -1,30 +1,36 @@
 class HomeController < ApplicationController
-
-   $r = Random.new.rand(0...9999)
     
+    def index
+        
+    end
+
     def create_room
+       $r = Random.new.rand(0...9999)
        create = Room.new
        create.code = $r
        create.save
+       host = Player.new
+       host.user_id = current_user.id
+       host.room_id = $r
+       host.point = 1
+       host.save
        
-       redirect_to '/home/create_player'
+       redirect_to '/home/join_room/'+$r.to_s
     end
     
-    
-    def create_player 
-       player_create = Player.new
-       player_create.user_id = current_user.id
-       player_create.room_id = $r
-       player_create.save
+
+    def join_room
+        unless Player.where(user_id: current_user.id).exists?
+           play = Player.new
+           play.user_id = current_user.id
+           play.room_id = $r
+           play.save
+        end
        
-       redirect_to '/home/check'
+       redirect_to '/home/game/'+$r.to_s
     end
     
-    
-    def check
-        @room_create = Room.all
-        @player_create = Player.all
+    def game
     end
-    
 
 end
