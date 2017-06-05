@@ -7,7 +7,11 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <%= stylesheet_link_tag    'game', media: 'all', 'data-turbolinks-track' => true %>
+    <!-- font -->
+    <link href="https://cdn.rawgit.com/singihae/Webfonts/master/style.css" rel="stylesheet" type="text/css" /> 
+   
     
+    <!--헤더부분-->
     <div class="users">
             <div class="user1">
             <img src='<%= asset_path 'boy1.png'%>' alt='boy1'/>
@@ -58,13 +62,18 @@
         
         <div class="common_card">
             
-            <div class="common_card_name"></div>
-              
+            <div class="common_card_name">
+                <h1>Example name</h1>
+            </div>
+            
+            <div class="common_card_desc">
+                <p>description here</p>
+            </div>
+            
             <div class="common_card_img">
-            <%= image_tag 'timer.png', :alt=> 'timer' %>
+                <img id="c_card_img" src="<%= asset_path 'Pikachu.png'%>" alt='happiness'> 
             </div>
         
-            <div class="common_card_desc"></div>
         </div>
         
         <div class="timer">
@@ -74,12 +83,18 @@
         <div class="personal_card">
             
             <div class="personal_card_name"></div>
+            <h1>행복</h1>
             
-            <div class="personal_card_img">
-            <%= image_tag 'timer.png', :alt=> 'timer' %>
+            <div class="personal_card_desc">
+            <p>가치관, 인생, 대학생활 등  </p>
             </div>
             
-            <div class="personal_card_desc"></div>
+            <div class="personal_card_img">
+            <img id="p_card_img" src="<%= asset_path 'happy.JPG'%>" alt='happiness'> 
+            
+            </div>
+            
+            
             
         </div>
         
