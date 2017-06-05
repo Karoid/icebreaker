@@ -1,13 +1,42 @@
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<title>Ice Break Game</title>
+  <link rel="stylesheet" href="css/ice.css" type="text/css" />
+  <meta property="og:url"           content="http://www.your-domain.com/your-page.html" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Your Website Title" />
+  <meta property="og:description"   content="Your description" />
+  <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
+</head>
+<body>
+<div class="container">
+	<a href="#">
+	    <div class="topic">
+            <h1>제모오옥</h1> 
+	    </div>
+	</a>
+
 <% if user_signed_in? %>
-<form method="get" action="home/create_room"> 
-    <button type="submit">방만들기</button>
-</form>
-<button id = "button1">참여하기</button>
-<a href="/users/sign_out">로그아웃</a>
+    <form method="get" action="home/create_room"> 
+      <button type="submit" class="makeR">방만들기</button>
+    </form>
+    <button id = "button1" class="part">참여하기</button><br>
+    <a href="/users/sign_out">로그아웃</a>
 <% else %>
-<a href="/users/sign_in">로그인</a>
-<a href="/users/sign_up">회원가입</a>
+
+
+<div class="makeR"><a href="/users/sign_in">로그인</a></div> 
+<div class="makeR"><a href="/users/sign_up">회원가입</a></div> 
 <% end %>
+  <div class="share">
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&mobile_iframe=true&width=116&height=20&appId" width="116" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+  </div>
+</div>
+
+
+
 
 <script>
     var url = window.location.hostname+':'+window.location.port

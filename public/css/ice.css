@@ -1,0 +1,125 @@
+/*기존 css=>필요xxxx*/
+
+#mainContent {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-large;
+	font-weight: bold;
+	background-color: #E3F0FB;
+	border-radius: 4px;
+	padding: 10px;
+	text-align: center;
+}
+.buttonStyle {
+	border-radius: 4px;
+	border: thin solid #F0E020;
+	padding: 5px;
+	background-color: #F8F094;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: bold;
+	color: #663300;
+	width: 75px;
+}
+.buttonStyle:hover {
+	border: thin solid #FFCC00;
+	background-color: #FCF9D6;
+	color: #996633;
+	cursor: pointer;
+}
+.buttonStyle:active {
+	border: thin solid #99CC00;
+	background-color: #F5FFD2;
+	color: #669900;
+	cursor: pointer;
+}
+
+/*여기서 부터 내가 쓴거
+play꺼*/
+
+.container{
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0;
+}
+/*유저아이콘 위에 거 묶어 놓은거~*/
+.u_ico1{
+    margin: 0 auto;
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+/*유저아이콘 밑에 꺼 묶어 놓은거~*/
+.u_ico2{
+    margin: 0 auto;
+    
+}
+
+.s_con{
+    width: 50%;
+    height: 30px;
+    position: absolute;
+    display: flex;
+    margin-top: 10%;
+    text-align: center;
+}
+
+.start{
+    width: 100px;
+    height: 30px;
+    border: thin solid black;
+    margin: 0 auto;
+    text-align: center;
+}
+
+img:hover{
+		border: 1.5px solid blue;
+}
+/*index.html*/
+.topic{
+	width: 200px;
+	height: auto;
+	margin: 0 auto;
+	background-color: black;
+	border: thin solid black;
+	margin-bottom: 20%;
+	margin-top: 10%;
+	padding: 20px;
+}
+h1{
+	color: white;
+	font-size: 20px;
+}
+a:link{
+	color:black; text-decoration:none; 
+}
+a:visited{
+	color:black; text-decoration:none; 
+}
+a:active{
+	color: black; text-decoration:none; 
+}
+a:hover{
+	color:blue; text-decoration:none; 
+}
+.makeR{
+	width: 150px;
+	height: 40;
+	border: thin solid black;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: white;
+}
+.part{
+	width: 150px;
+	height: 40;
+	border: thin solid black;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: white;
+}
+.share{
+	margin: 0 auto;
+	margin-top: 20px 
+}
