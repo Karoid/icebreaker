@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-    $r = Random.new.rand(0...9999)
+
+   $r = Random.new.rand(0...9999)
     
     def create_room
        create = Room.new
@@ -7,12 +8,6 @@ class HomeController < ApplicationController
        create.save
        
        redirect_to '/home/create_player'
-    end
-    
-    
-    def check
-        @room_create = Room.all
-        @player_create = Player.all
     end
     
     
@@ -24,4 +19,12 @@ class HomeController < ApplicationController
        
        redirect_to '/home/check'
     end
+    
+    
+    def check
+        @room_create = Room.all
+        @player_create = Player.all
+    end
+    
+
 end
