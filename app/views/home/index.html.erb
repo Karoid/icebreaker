@@ -14,12 +14,12 @@
 <div class="container">
 	<a href="#">
 	    <div class="topic">
-            <h1>제모오옥</h1> 
+            <h1>제모오옥</h1>
 	    </div>
 	</a>
 
 <% if user_signed_in? %>
-    <form method="get" action="home/create_room"> 
+    <form method="get" action="home/create_room">
       <button type="submit" class="makeR">방만들기</button>
     </form>
     <button id = "button1" class="part">참여하기</button><br>
@@ -27,8 +27,8 @@
 <% else %>
 
 
-<div class="makeR"><a href="/users/sign_in">로그인</a></div> 
-<div class="makeR"><a href="/users/sign_up">회원가입</a></div> 
+<div class="makeR"><a href="/users/sign_in">로그인</a></div>
+<div class="makeR"><a href="/users/sign_up">회원가입</a></div>
 <% end %>
   <div class="share">
     <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&mobile_iframe=true&width=116&height=20&appId" width="116" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
@@ -54,7 +54,7 @@
         dispatcher.trigger('game.room_connect', roomcode);
         dispatcher.bind('game.room_connect_status',function(task){
           if (task.status){
-            window.location = '/home/join_room/'+roomcode
+            window.location = '/home/game/'+roomcode
           }else {
             alert(task.message)
             dispatcher.unbind('game.room_connect_status')

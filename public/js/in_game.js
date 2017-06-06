@@ -5,15 +5,29 @@ var url_array = window.location.pathname.split("/")
 var room_code = window.location.pathname.split("/")[url_array.length - 1]
 var channel = dispatcher.subscribe('room_'+room_code);
 var message = {room_code: room_code}
+var x = new Object()
 
 dispatcher.trigger('game.info',message);
 
-dispatcher.bind('game.player_info', function(text) {
-  console.log(text);
+dispatcher.bind('game.player_info', function(data) {
+  x = data
+  $('.users>div').hide()
+  console.log(data.player_info);
+  data.player_info.forEach(function(el,index) {
+    $('.users>.user'+(index+1)).show().addClass("id_"+el.id).children('.player_username').html(el.username)
+  });
 });
 
-channel.bind('player_disconnect', function(text) {
-  alert(text);
+channel.bind('player_enter', function(data) {
+  x.player_info.push(data.player_info)
+  index = x.player_info.length
+  el = data.player_info
+  console.log(index,el, $('.users>.user'+(index+1)))
+  $('.users>.user'+(index+1)).show().addClass("id_"+el.id).children('.player_username').html(el.username)
+});
+
+channel.bind('player_disconnect', function(data) {
+  $('.id_'+data.player_info.id).hide().removeClass('.id_'+data.player_info.id)
 });
 //나갈때
 $(window).bind('beforeunload', function() {
