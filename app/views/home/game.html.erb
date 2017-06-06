@@ -4,13 +4,14 @@
     <meta charset= "utf-8">
 <head>
     <title>Icebreaker</title>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <%= stylesheet_link_tag    'game', media: 'all', 'data-turbolinks-track' => true %>
     <!-- font -->
-    <link href="https://cdn.rawgit.com/singihae/Webfonts/master/style.css" rel="stylesheet" type="text/css" /> 
-   
-    
+    <link href="https://cdn.rawgit.com/singihae/Webfonts/master/style.css" rel="stylesheet" type="text/css" />
+    <script src="/js/in_game.js"></script>
+
+
     <!--헤더부분-->
     <div class="users">
             <div class="user1">
@@ -19,35 +20,35 @@
             lv.1
             Myang
             </div>
-            
+
             <div class="user2">
             <img src='<%= asset_path 'boy2.png'%>' alt='boy2'/>
             <br>
             lv.1
             Myang
             </div>
-            
+
             <div class="user3">
             <img src='<%= asset_path 'girl1.png'%>' alt='girl1'/>
             <br>
             lv.1
             Myang
             </div>
-            
+
             <div class="user4">
             <img src='<%= asset_path 'girl2.png'%>' alt='boy2'/>
             <br>
             lv.1
             Myang
             </div>
-            
+
             <div class="user5">
             <img src='<%= asset_path 'boy1.png'%>' alt='boy1'/>
             <br>
             lv.1
             Myang
             </div>
-            
+
             <div class="user6">
             <img src='<%= asset_path 'boy1.png'%>' alt='boy1'/>
             <br>
@@ -55,54 +56,54 @@
             Myang
             </div>
         </div>
-    
-</head>    
+
+</head>
 <body>
-    <h3>Room code = <%=$r%></h3>
+    <h3>Room code = <%=params[:room_code]%></h3>
     <div class="container">
-        
+
         <div class="common_card">
-            
+
             <div class="common_card_name">
                 <h1>Example name</h1>
             </div>
-            
+
             <div class="common_card_desc">
                 <p>description here</p>
             </div>
-            
+
             <div class="common_card_img">
-                <img id="c_card_img" src="<%= asset_path 'Pikachu.png'%>" alt='happiness'> 
+                <img id="c_card_img" src="<%= asset_path 'Pikachu.png'%>" alt='happiness'>
             </div>
-        
+
         </div>
-        
+
         <div class="timer">
             <%= image_tag 'timer.png', :alt=> 'timer' %>
         </div>
-        
+
         <div class="personal_card">
-            
+
             <div class="personal_card_name"></div>
             <h1>행복</h1>
-            
+
             <div class="personal_card_desc">
             <p>가치관, 인생, 대학생활 등  </p>
             </div>
-            
+
             <div class="personal_card_img">
-            <img id="p_card_img" src="<%= asset_path 'happy.JPG'%>" alt='happiness'> 
-            
+            <img id="p_card_img" src="<%= asset_path 'happy.JPG'%>" alt='happiness'>
+
             </div>
-            
-            
-            
+
+
+
         </div>
-        
+
     </div>
 </body>
-    
-    
 
-    
+
+
+
 </html>

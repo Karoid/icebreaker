@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
-    
+
     def index
-        
+
     end
 
     def create_room
@@ -14,24 +14,28 @@ class HomeController < ApplicationController
        host.room_id = room.id
        host.point = 1
        host.save
-       
+
        redirect_to '/home/join_room/'+$r.to_s
     end
-    
+
 
     def join_room
-        room_id = Room.where(code: params[:room_code]).limit(1)[0].id
+        room_id = Room.select(:id).where(code: params[:room_code]).limit(1)[0].id
         unless Player.where(user_id: current_user.id, room_id: room_id).exists?
            player = Player.new
            player.user_id = current_user.id
            player.room_id = room_id
+           player.username = current_user.username
            player.save
         end
-       
-       redirect_to '/home/game/'+$r.to_s
+
+       redirect_to '/home/game/'+params[:room_code]
     end
-    
+
     def game
+      unless Room.where(code: params[:room_code]).limit(1).exists?
+        redirect_to '/'
+      end
     end
 
 end

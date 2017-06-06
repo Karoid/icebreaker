@@ -15,7 +15,9 @@ WebsocketRails::EventMap.describe do
   namespace :game do
     subscribe :connection, :to => GameController, :with_method => :initial_connection
     subscribe :room_connect, :to => GameController, :with_method => :room_connect
+    subscribe :info, :to => GameController, :with_method => :room_info
+    subscribe :disconnect, :to => GameController, :with_method => :room_disconnect
   end
-  
-  
+
+
 end
