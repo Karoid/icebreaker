@@ -71,20 +71,14 @@ play꺼*/
     text-align: center;
 }
 
-img:hover{
-		border: 1.5px solid blue;
-}
+
 /*index.html*/
-.topic{
+#logo {
 	width: 200px;
 	height: auto;
 	margin: 0 auto;
-	background-color: black;
-	border: thin solid black;
-	margin-bottom: 20%;
-	margin-top: 10%;
-	padding: 20px;
 }
+
 h1{
 	color: white;
 	font-size: 20px;

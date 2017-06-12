@@ -65,47 +65,45 @@
 
 </head>
 <body>
-    <h3>Room code = <%=params[:room_code]%></h3>
+    
     <div class="container">
-
-        <div class="common_card">
-
-            <div class="common_card_name">
-                <h1>Example name</h1>
+    <h3>Room code = <%=params[:room_code]%></h3>
+        <div class="cards">
+            <div class="common_card">
+    
+                <div class="common_card_name">
+                    <h1>Example name</h1>
+                </div>
+    
+                <div class="common_card_desc">
+                    <p>description here</p>
+                </div>
+    
+                <div class="common_card_img">
+                    <img id="c_card_img" src="<%= asset_path 'Pikachu.png'%>" alt='happiness'>
+                </div>
+    
             </div>
-
-            <div class="common_card_desc">
-                <p>description here</p>
+    
+            <div class="timer">
+                <%= image_tag 'timer.png', :alt=> 'timer' %>
             </div>
-
-            <div class="common_card_img">
-                <img id="c_card_img" src="<%= asset_path 'Pikachu.png'%>" alt='happiness'>
+    
+            <div class="personal_card">
+    
+                <div class="personal_card_name"></div>
+                <h1>행복</h1>
+    
+                <div class="personal_card_desc">
+                <p>가치관, 인생, 대학생활 등  </p>
+                </div>
+    
+                <div class="personal_card_img">
+                <img id="p_card_img" src="<%= asset_path 'happy.JPG'%>" alt='happiness'>
+    
+                </div>
             </div>
-
         </div>
-
-        <div class="timer">
-            <%= image_tag 'timer.png', :alt=> 'timer' %>
-        </div>
-
-        <div class="personal_card">
-
-            <div class="personal_card_name"></div>
-            <h1>행복</h1>
-
-            <div class="personal_card_desc">
-            <p>가치관, 인생, 대학생활 등  </p>
-            </div>
-
-            <div class="personal_card_img">
-            <img id="p_card_img" src="<%= asset_path 'happy.JPG'%>" alt='happiness'>
-
-            </div>
-
-
-
-        </div>
-
     </div>
 </body>
 
