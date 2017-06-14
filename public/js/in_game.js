@@ -1,5 +1,8 @@
 //접속시
-var url = window.location.hostname+':'+window.location.port
+var url = window.location.hostname
+if(window.location.port!=""){
+  url+=':'+window.location.port
+}
 var dispatcher = new WebSocketRails(url+'/websocket');
 var url_array = window.location.pathname.split("/")
 var room_code = window.location.pathname.split("/")[url_array.length - 1]
@@ -14,7 +17,7 @@ dispatcher.bind('game.player_info', function(data) {
   $('.users>div').hide()
   console.log(data.player_info);
   data.player_info.forEach(function(el,index) {
-    $('.users>.user'+(index+1)).show().addClass("id_"+el.id).children('.player_username').html(el.username)
+    $('.users>.user'+(index+1)).css("display","inline-block").addClass("id_"+el.id).children('.player_username').html(el.username)
   });
 });
 
@@ -23,7 +26,7 @@ channel.bind('player_enter', function(data) {
   index = x.player_info.length
   el = data.player_info
   console.log(index,el, $('.users>.user'+(index+1)))
-  $('.users>.user'+(index+1)).show().addClass("id_"+el.id).children('.player_username').html(el.username)
+  $('.users>.user'+(index+1)).css("display","inline-block").addClass("id_"+el.id).children('.player_username').html(el.username)
 });
 
 channel.bind('player_disconnect', function(data) {

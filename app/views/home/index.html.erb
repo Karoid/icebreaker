@@ -1,16 +1,4 @@
-<html lang="en-us">
-
-<head>
-<meta charset="utf-8">
-<title>Ice Break Game</title>
-  <link rel="stylesheet" href="css/ice.css" type="text/css" />
-  <meta property="og:url"           content="http://www.your-domain.com/your-page.html" />
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Your Website Title" />
-  <meta property="og:description"   content="Your description" />
-  <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
-</head>
-<body>
+<link rel="stylesheet" href="/css/ice.css" type="text/css" />
 <div class="container">
 	<a href="#">
 	    <div class="topic">
@@ -20,15 +8,15 @@
 
 <% if user_signed_in? %>
     <form method="get" action="home/create_room">
-      <button type="submit" class="makeR">방만들기</button>
+      <button type="submit" class="button buttonBlue">방만들기</button>
     </form>
-    <button id = "button1" class="part">참여하기</button><br>
-    <a href="/users/sign_out">로그아웃</a>
+    <button id = "button1" class="button buttonBlue part">참여하기</button><br>
+    <a href="/users/sign_out" data-confirm="로그아웃 하시겠습니까?">로그아웃</a>
 <% else %>
 
 
-<div class="makeR"><a href="/users/sign_in">로그인</a></div>
-<div class="makeR"><a href="/users/sign_up">회원가입</a></div>
+<a href="/users/sign_in"><div class="button buttonBlue">로그인</div></a>
+<a href="/users/sign_up"><div class="button buttonBlue">회원가입</div></a>
 <% end %>
   <div class="share">
     <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&mobile_iframe=true&width=116&height=20&appId" width="116" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
@@ -39,14 +27,17 @@
 
 
 <script>
-    var url = window.location.hostname+':'+window.location.port
+    var url = window.location.hostname
+    if(window.location.port!=""){
+      url+=':'+window.location.port
+    }
     var dispatcher = new WebSocketRails(url+'/websocket');
 
     var test = {text: 'hello world'}
     dispatcher.trigger('game.connection', test);
     //get my message
     dispatcher.bind('game.connection_success', function(task) {
-      $('body').append(task.message)
+      console.log(task.message)
     });
 
     $('#button1').on('click', function(){

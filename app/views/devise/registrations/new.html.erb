@@ -1,18 +1,39 @@
-<h2>Sign up</h2>
-
+<link rel="stylesheet" href="/css/devise.css" type="text/css" />
+<script src="/js/devise.js"></script>
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
-
+  <h2>Sign up</h2>
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :username, required: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
+    <div class="group">
+      <input name="user[email]" required="true" autofocus="true"/><span class="highlight"></span><span class="bar"></span>
+      <label>Email</label>
+    </div>
+    
+    <div class="group">
+      <input name="user[username]" required="true" autofocus="true"/><span class="highlight"></span><span class="bar"></span>
+      <label>Username</label>
+    </div>
+    
+    <div class="group">
+      
+      <input class="password required" required="required" aria-required="true" type="password" name="user[password]" id="user_password"><span class="highlight"></span><span class="bar"></span>
+      <span class="hint">6 characters minimum</span>
+      <label>Password</label>
+    </div>
+    
+    <div class="group">
+      <input class="password required"  required="required" aria-required="true" type="password" name="user[password_confirmation]" ><span class="highlight"></span><span class="bar"></span>
+      <label id="password_confirm_label">Password Confirmation</label>
+    </div>
+    
+    
+  
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", class:"button buttonBlue" %>
   </div>
+  <%= render "devise/shared/links" %>
 <% end %>
 
-<%= render "devise/shared/links" %>
+

@@ -36,7 +36,7 @@
 play꺼*/
 
 .container{
-    width: 50%;
+    max-width: 800px;
     height: 100%;
     margin: 0 auto;
     text-align: center;
@@ -74,7 +74,8 @@ play꺼*/
 
 /*index.html*/
 #logo {
-	width: 200px;
+	width:auto;
+    max-width:600px;
 	height: auto;
 	margin: 0 auto;
 }
@@ -95,25 +96,51 @@ a:active{
 a:hover{
 	color:blue; text-decoration:none; 
 }
-.makeR{
-	width: 150px;
-	height: 40;
-	border: thin solid black;
-    margin: 0 auto;
-    text-align: center;
-    margin-bottom: 20px;
-    background-color: white;
+
+
+
+/* Button */
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  margin: .3em 0 1em 0;
+  max-width: 120px;
+  vertical-align: middle;
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  letter-spacing: 1px;
+  background: transparent;
+  border: 0;
+  border-radius: 20px;
+  border-bottom: 2px solid #444f59;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
-.part{
-	width: 150px;
-	height: 40;
-	border: thin solid black;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    text-align: center;
-    background-color: white;
+.button:focus { outline: 0; }
+
+
+/* Button modifiers */
+
+.buttonBlue {
+  background: #fd999a;
+  text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
 }
+
+.buttonBlue:hover { background: #fec8c9; }
+
 .share{
 	margin: 0 auto;
 	margin-top: 20px 
+}
+
+@media(max-width:768px){
+    #logo{
+    	width:200px;
+    	max-width:auto;
+    }
 }
