@@ -47,6 +47,16 @@ margin: 0; padding: 0;
     float:left;
    
 }
+#bar {
+    display: inline-block;
+    float: left;
+    width:0px;
+    height:3vh;
+    border: 1px solid white;
+    background-color: yellow;
+    border-radius:3px;
+}
+
 .card_left, .card_right {
     width: 100vw;
     height: 39vh;
@@ -203,7 +213,6 @@ div.personal_card_name {
     margin: 0 auto;
     text-align: center;
     padding: 0;
-    background-color: blue ;
 
 }
 .card_left {
@@ -248,11 +257,32 @@ div.personal_card_name {
    
 }
 div.timer{
-    display: inline;
+    display: inline-block;
     float: left;
-    margin-top: 28vh;
-
+    margin-top: 2vh;
+    margin-left: 1vw;
 }
+
+#bar {
+    display: inline-block;
+    float:left;
+    bottom: 0;
+    position: absolute;
+    width:5vw;
+    height:0;
+    border:1px solid black;
+    background-color:pink;
+    border-radius:3px;
+}
+#bar_bg {
+    display: inline-block;
+    float:left;
+    background-color: #C0C0C0;
+    position: relative;
+    width: 5vw;
+    height: 550px;
+}
+
 .personal_card{
     display: inline-block;
     border: 1px;

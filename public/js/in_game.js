@@ -40,3 +40,90 @@ $(window).bind('beforeunload', function() {
 $(window).unload(function(){
   dispatcher.trigger('game.disconnect', message);
 });
+
+//Front_timer
+
+var mq = window.matchMedia( "(min-width: 1025px)" );
+if (mq.matches) {
+  // window width is more than 1025px(desktop!!!)
+  $(document).ready(function() {
+    var maxHeight = 550;
+    var duration = 60000;
+    var $log = $('#log');
+    var $start = $('#start');
+    var $stop = $('#stop');
+    var timer;
+    var $bar = $('#bar');
+    Horloge(maxHeight);
+    timer = setInterval('Horloge('+maxHeight+')', 100);
+
+    $bar.animate({"bottom": "0px", "height": "400"}, duration, function() {
+        $(this).css('background-color', 'black');
+        $start.attr('disabled', true);
+        $stop.attr('disabled', true);
+        $log.html('100 %');
+        clearInterval(timer);
+    });
+
+    $stop.on('click', function() {
+        var $bar = $('#bar');
+        $bar.stop();
+
+        clearInterval(timer);
+
+        var w = $bar.height();
+        var percent = parseInt((w * 100) / maxHeight);
+        $log.html(percent + ' %');
+    });
+});
+
+function Horloge(maxHeight) {
+    var w = $('#bar').height();
+    var percent = parseInt((w * 100) / maxHeight);
+    $('#log').html(percent + ' %');
+}
+
+} else {
+  // window width is less than 1025px
+$(document).ready(function() {
+    var maxWidth = 300;
+    var duration = 60000;
+    var $log = $('#log');
+    var $start = $('#start');
+    var $stop = $('#stop');
+    var timer;
+ //$start.on('click', function(){
+    var $bar = $('#bar');
+    Clock(maxWidth);
+    timer = setInterval('Clock('+maxWidth+')', 100);
+
+    $bar.animate({
+        width: maxWidth
+    }, duration, function() {
+        $(this).css('background-color', 'black');
+        $start.attr('disabled', true);
+        $stop.attr('disabled', true);
+        $log.html('100 %');
+        clearInterval(timer);
+    });
+//});
+
+    $stop.on('click', function() {
+        var $bar = $('#bar');
+        $bar.stop();
+
+        clearInterval(timer);
+
+        var w = $bar.width();
+        var percent = parseInt((w * 100) / maxWidth);
+        $log.html(percent + ' %');
+    });
+
+});
+
+function Clock(maxWidth) {
+    var w = $('#bar').width();
+    var percent = parseInt((w * 100) / maxWidth);
+    $('#log').html(percent + ' %');
+}
+}

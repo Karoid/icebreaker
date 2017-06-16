@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag    'game', media: 'all', 'data-turbolinks-track' => true %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="/js/in_game.js"></script>
 
 <div class="users">
@@ -74,7 +75,11 @@
     
     <div class="center">
         <div class="timer">
-            <%= image_tag 'timer.png', :alt=> 'timer' %>
+            <button id="start">Start</button>
+            <button id="stop">Stop</button><br>
+            
+            <div id="bar"></div>
+            <div id="log"></div>
         </div>
     </div>
     
