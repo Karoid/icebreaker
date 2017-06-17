@@ -14,7 +14,7 @@ dispatcher.trigger('game.info',message);
 
 dispatcher.bind('game.player_info', function(data) {
   x = data
-  $('.users>div').hide()
+  //$('.users>div>div').hide()
   console.log(data.player_info);
   data.player_info.forEach(function(el,index) {
     $('.users>.user'+(index+1)).css("display","inline-block").addClass("id_"+el.id).children('.player_username').html(el.username)
@@ -38,7 +38,7 @@ $(window).bind('beforeunload', function() {
     return '게임을 나가시겠습니까?'
 });
 $(window).unload(function(){
-  dispatcher.trigger('game.disconnect', message);
+//  dispatcher.trigger('game.disconnect', message);
 });
 
 //Front_timer
@@ -47,34 +47,20 @@ var mq = window.matchMedia( "(min-width: 1025px)" );
 if (mq.matches) {
   // window width is more than 1025px(desktop!!!)
   $(document).ready(function() {
-    var maxHeight = 550;
-    var duration = 60000;
+    var maxHeight = $("#bar_bg").height();
+    var duration = 6000;
     var $log = $('#log');
-    var $start = $('#start');
-    var $stop = $('#stop');
     var timer;
     var $bar = $('#bar');
     Horloge(maxHeight);
     timer = setInterval('Horloge('+maxHeight+')', 100);
 
-    $bar.animate({"bottom": "0px", "height": "400"}, duration, function() {
-        $(this).css('background-color', 'black');
-        $start.attr('disabled', true);
-        $stop.attr('disabled', true);
+    $bar.animate({"bottom": "0px", "height": maxHeight}, duration, function() {
+        $(this).css('background-color', 'red');
         $log.html('100 %');
         clearInterval(timer);
     });
 
-    $stop.on('click', function() {
-        var $bar = $('#bar');
-        $bar.stop();
-
-        clearInterval(timer);
-
-        var w = $bar.height();
-        var percent = parseInt((w * 100) / maxHeight);
-        $log.html(percent + ' %');
-    });
 });
 
 function Horloge(maxHeight) {
@@ -86,13 +72,10 @@ function Horloge(maxHeight) {
 } else {
   // window width is less than 1025px
 $(document).ready(function() {
-    var maxWidth = 300;
-    var duration = 60000;
+    var maxWidth = $("#bar_bg").width();
+    var duration = 6000;
     var $log = $('#log');
-    var $start = $('#start');
-    var $stop = $('#stop');
     var timer;
- //$start.on('click', function(){
     var $bar = $('#bar');
     Clock(maxWidth);
     timer = setInterval('Clock('+maxWidth+')', 100);
@@ -101,26 +84,10 @@ $(document).ready(function() {
         width: maxWidth
     }, duration, function() {
         $(this).css('background-color', 'black');
-        $start.attr('disabled', true);
-        $stop.attr('disabled', true);
         $log.html('100 %');
         clearInterval(timer);
     });
-//});
-
-    $stop.on('click', function() {
-        var $bar = $('#bar');
-        $bar.stop();
-
-        clearInterval(timer);
-
-        var w = $bar.width();
-        var percent = parseInt((w * 100) / maxWidth);
-        $log.html(percent + ' %');
-    });
-
 });
-
 function Clock(maxWidth) {
     var w = $('#bar').width();
     var percent = parseInt((w * 100) / maxWidth);
