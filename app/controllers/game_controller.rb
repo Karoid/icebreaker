@@ -1,4 +1,7 @@
 class GameController < WebsocketRails::BaseController
+  include PgameController
+  include NgameController
+
   def initial_connection
     if message[:text]
       send_message :connection_success, {message: 'web socket connected'}, :namespace => 'game'
@@ -40,10 +43,6 @@ class GameController < WebsocketRails::BaseController
         room.destroy
       end
     end
-  end
-
-  def game_start
-
   end
 
 end

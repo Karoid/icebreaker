@@ -14,10 +14,9 @@ dispatcher.trigger('game.info',message);
 
 dispatcher.bind('game.player_info', function(data) {
   x = data
-  //$('.users>div>div').hide()
-  console.log(data.player_info);
+  $('.users>div.section>div').not(".ready").hide()
   data.player_info.forEach(function(el,index) {
-    $('.users>.user'+(index+1)).css("display","inline-block").addClass("id_"+el.id).children('.player_username').html(el.username)
+    $('.users>div.section>.user'+(index+1)).css("display","inline-block").addClass("id_"+el.id).children('.player_username').html(el.username)
   });
 });
 
@@ -26,7 +25,7 @@ channel.bind('player_enter', function(data) {
   index = x.player_info.length
   el = data.player_info
   console.log(index,el, $('.users>.user'+(index+1)))
-  $('.users>.user'+(index+1)).css("display","inline-block").addClass("id_"+el.id).children('.player_username').html(el.username)
+  $('.users>div.section>.user'+(index+1)).css("display","inline-block").addClass("id_"+el.id).children('.player_username').html(el.username)
 });
 
 channel.bind('player_disconnect', function(data) {
@@ -38,7 +37,7 @@ $(window).bind('beforeunload', function() {
     return '게임을 나가시겠습니까?'
 });
 $(window).unload(function(){
-//  dispatcher.trigger('game.disconnect', message);
+  dispatcher.trigger('game.disconnect', message);
 });
 
 //Front_timer
