@@ -1,10 +1,14 @@
-//ready button
-$(document).ready(function(){
-    $("#readybutton").click(function(){
-      dispatcher.trigger('game.ready_game');
-      $('#readybutton').attr('disabled','true').html('waiting')
-    });
-})
+//onload
+$(document).ready(Melting_Talk_Logic.onload)
+
+//나갈때
+$(window).bind('beforeunload', function() {
+    //확인 창을 띄우지 않으려면 아무 내용도 Return 하지 마세요!! (Null조차도)
+    return '게임을 나가시겠습니까?'
+});
+$(window).unload(function(){
+  dispatcher.trigger('game.disconnect', message);
+});
 
 //Front_timer
 var mq = window.matchMedia( "(min-width: 1025px)" );
@@ -59,11 +63,4 @@ function Clock(maxWidth) {
     var percent = parseInt((w * 100) / maxWidth);
     $('#log').html(percent + ' %');
 }
-}
-
-//action
-
-function do_ready(player){
-    console.log(player, player.id)
-    $('.id_'+player.id).css('background','#00BCD4')
 }

@@ -28,9 +28,9 @@ class GameController < WebsocketRails::BaseController
     end
   end
 
-  def room_info
+  def info
     room = Room.where(code: message["room_code"]).limit(1)[0]
-    send_message :player_info, {player_info: room.players, room_info:room}, :namespace => 'game'
+    send_message :info, {player_info: room.players, room_info:room}, :namespace => 'game'
   end
 
   def room_disconnect
