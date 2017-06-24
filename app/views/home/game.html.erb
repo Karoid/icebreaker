@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag    'game', media: 'all', 'data-turbolinks-track' => true %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/in_game_socket.js"></script>
 <script src="/js/in_game.js"></script>
 
 <div class="users ready">
@@ -45,28 +46,17 @@
     </div>
     <div class="section">
         <div class="ready">
-            <button id="readybutton" onclick="javascript:$('.users').removeClass('ready')">Ready?</button>
+            <button id="readybutton">Ready?</button>
         </div>
     </div>
 </div>
 
-
 <div class="container">
     <div class="card_left">
         <div class="common_card">
-
             <div class="common_card_name">
-                <h1>Example name</h1>
+                <h1>Topic</h1></h1>
             </div>
-
-            <div class="common_card_desc">
-                <p>description here</p>
-            </div>
-
-            <div class="common_card_img">
-                <img id="c_card_img" src="<%= asset_path 'Pikachu.png'%>" alt='happiness'>
-            </div>
-
         </div>
     </div>
 
@@ -74,7 +64,7 @@
         <div class="timer">
             <div id="log"></div>
             <div id="bar_bg">
-                <div id="bar"></div>
+                <div id="bar"><img src=""/></div>
             </div>
         </div>
     </div>
@@ -95,4 +85,9 @@
             </div>
         </div>
     </div>
+    <div class="button">
+        ready
+    </div>
 </div>
+
+

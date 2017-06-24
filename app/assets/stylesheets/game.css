@@ -136,9 +136,30 @@ margin: 0; padding: 0;
 
 .card_left, .card_right {
     width: 100vw;
-    height: 39vh;
+    height: 5vh;
 }
-.common_card,.personal_card{
+.common_card{
+    display: inline;
+    float: left;
+    border: 1px;
+    border-color: gray;
+    border-radius: 5%;
+    border-style: outset;
+    width: 96vw;
+    height: 7vh;
+    overflow:hidden;
+    margin: 1vh 2vw;
+    background-image: url("pattern.jpg");
+    background-size: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    font-family: 'BM HANNA';
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.personal_card{
     display: inline;
     float: left;
     border: 1px;
@@ -322,7 +343,7 @@ div.personal_card_name {
     border-radius: 5%;
     border-style: outset;
     width: 43vw;
-    height: 82vh;
+    height: 5vh;
     margin: 2vh 1vw;
     background-image: url("pattern.jpg");
     background-size: 80%;

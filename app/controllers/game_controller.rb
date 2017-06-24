@@ -44,5 +44,11 @@ class GameController < WebsocketRails::BaseController
       end
     end
   end
+  
+  def game_state
+    # 현재 room의 상태를 return 하는 메소드
+    current_room = current_user.player.room
+    return current_room.action
+  end
 
 end
