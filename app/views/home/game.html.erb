@@ -1,8 +1,15 @@
 <%= stylesheet_link_tag    'game', media: 'all', 'data-turbolinks-track' => true %>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<%if @dev != true%>
 <script src="/js/in_game_action.js"></script>
 <script src="/js/in_game_socket.js"></script>
 <script src="/js/in_game.js"></script>
+<%else%>
+<script>
+$(document).ready(function(){
+  $('.users').removeClass('ready')  
+})
+</script>
+<%end%>
 
 <div class="users ready">
     <div class="section">
@@ -53,42 +60,47 @@
 </div>
 
 <div class="container">
-    <div class="card_left">
-        <div class="common_card">
-            <div class="common_card_name">
-                <h1>Topic</h1></h1>
-            </div>
-        </div>
-    </div>
-
+<div class="top">
+    <h1>Topic</h1>
     <div class="center">
+        <div id="askuser">
+            <img src='<%= asset_path 'girl1.png'%>' alt='girl1'/>
+        </div>
         <div class="timer">
-            <div id="log"></div>
+            <!--  <div id="log"></div> -->
             <div id="bar_bg">
-                <div id="bar"><img src=""/></div>
+                <div id="bar"> 
+                    <img src="images/arrow_bg.png"><img src="images/arrow_bg.png"><img src="images/arrow_bg.png"><img src="images/arrow_bg.png"><img src="images/arrow_bg.png"><img src="images/arrow_bg.png">
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="card_right">
-        <div class="personal_card">
-
-            <div class="personal_card_name"></div>
-            <h1>행복</h1>
-
-            <div class="personal_card_desc">
-            <p>가치관, 인생, 대학생활 등  </p>
-            </div>
-
-            <div class="personal_card_img">
-            <img id="p_card_img" src="<%= asset_path 'happy.JPG'%>" alt='happiness'>
-
-            </div>
+        <div id="answeruser">
+            <img src='<%= asset_path 'girl1.png'%>' alt='girl1'/>
         </div>
     </div>
+</div>
+
+<div class="middle">    
+    <div id="personal_card">
+      <p id="text">
+         Hello World!
+      </p>
+  <div id="personal_card_img">
+            <img id="p_card_img" src="<%= asset_path 'card_image.png'%>" alt='happiness'>
+        </div>
+  <!--- <div class="personal_card_name"></div>
+        <h1>행복</h1>
+
+        <div class="personal_card_desc">
+        <p>가치관, 인생, 대학생활 등  </p>
+        </div>  --->
+    </div>
+</div>
+<div class="bottom">    
     <div class="button">
-        ready
+        질문중 · · ·
     </div>
+</div>
 </div>
 
 

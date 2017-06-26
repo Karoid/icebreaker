@@ -6,6 +6,8 @@ function do_game_from_broadcast(data){
     case 'start':
       do_start(data.random_player);
       break;
+    case 'turn_answer_end':
+      do_turn_answer_end();
   }
 }
 
@@ -17,4 +19,8 @@ function do_ready(player){
 
 function do_start(){
     $('.users').removeClass('ready').children(".section").children("div").css("background","");
+}
+
+function do_turn_answer_end(){
+  
 }

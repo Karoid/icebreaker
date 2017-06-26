@@ -39,28 +39,23 @@ function Horloge(maxHeight) {
 
 } else {
   // window width is less than 1025px
-$(document).ready(function() {
-    var maxWidth = $("#bar_bg").width();
-    var duration = 6000;
-    var $log = $('#log');
-    var timer;
-    var $bar = $('#bar');
-    Clock(maxWidth);
-    timer = setInterval('Clock('+maxWidth+')', 100);
-
-    $bar.animate({
-        width: maxWidth
-    }, duration, function() {
-        $(this).css('background-color', 'black');
-        $log.html('100 %');
-        clearInterval(timer);
-    });
-});
-
-
-function Clock(maxWidth) {
+function Clock(seconds) {
     var w = $('#bar').width();
+    var maxWidth = $("#bar_bg").width();
     var percent = parseInt((w * 100) / maxWidth);
-    $('#log').html(percent + ' %');
+    var $bar = $('#bar');
+    
+    $bar.css('width',0).animate({
+        width: maxWidth
+    }, seconds*1000, function() {
+        // after animate
+        $(this).css('background-color', 'black');
+        //$log.html('100 %');
+    })
+    //$('#log').html(percent + ' %');
 }
+
+$(document).ready(function() {
+    Clock(100)
+});
 }

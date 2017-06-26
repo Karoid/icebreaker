@@ -26,4 +26,8 @@ class HomeController < ApplicationController
       end
     end
 
+    def dev
+        @dev = true
+        render template: "home/game.html"
+    end
 end

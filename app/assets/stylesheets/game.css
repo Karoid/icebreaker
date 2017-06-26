@@ -105,28 +105,52 @@ margin: 0; padding: 0;
 }
 
 .container {
+    text-align:center;
     width: 100vw;
     margin: 0 auto;
     padding: 0;
     height: 86vh;
-    float:left;
-   
+}
+.top {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    height: 12vh;
+}
+.middle {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    height: 66vh;
+}
+.bottom {
+    width: 100vw;
+    margin: 0 auto;
+    padding: 0;
+    height: 7vh;
 }
 #bar {
     display: inline-block;
     float: left;
-    width:0px;
+    width: 100%;
     height:100%;
     background-color: yellow;
     border-radius: 3vw;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0,.2);
+    overflow: hidden;
+    white-space: nowrap;
+}
+#bar img{
+    height:100%;
+    display: inline
 }
 #bar_bg {
     display: inline-block;
     float:left;
     background-color: #696969;
     position: relative;
-    width:90vw;
+    width: 74vw;
     height:3vh;
     margin: 1vh 5vw;
     box-sizing: border-box;
@@ -138,39 +162,17 @@ margin: 0; padding: 0;
     width: 100vw;
     height: 5vh;
 }
-.common_card{
-    display: inline;
-    float: left;
-    border: 1px;
-    border-color: gray;
-    border-radius: 5%;
-    border-style: outset;
-    width: 96vw;
-    height: 7vh;
-    overflow:hidden;
-    margin: 1vh 2vw;
-    background-image: url("pattern.jpg");
-    background-size: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    text-align: center;
-    font-family: 'BM HANNA';
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
 
 .personal_card{
-    display: inline;
-    float: left;
     border: 1px;
     border-color: gray;
     border-radius: 5%;
     border-style: outset;
-    width: 96vw;
-    height: 37vh;
+    width: 90vw;
+    margin-left: 5vw;
+    height: 65vh;
     overflow:hidden;
     margin: 1vh 2vw;
-    background-image: url("pattern.jpg");
     background-size: 80%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
@@ -179,14 +181,51 @@ margin: 0; padding: 0;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
-.center{
-    width:100vw;
-    height:8vh;
-}
-div.common_card_name {
-    padding-top: 4%;
+
+
+#personal_card_img{
+    margin: 0 auto;
 }
 
+#image {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#text {
+  z-index: 100;
+  position: absolute;
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
+
+}
+
+.center{
+    width:100%;
+    height:15vh;
+    margin: 0 auto;
+}
+
+#askuser {
+    float: left;
+    width: 8vw;
+    max-width: 8vw;
+}
+#answeruser {
+    float: right;
+    width: 8vw;
+    max-width: 8vw;
+}
+#askuser img, #answeruser img{
+    width:100%;
+}
+div.timer{
+    float: left;
+    display: block;
+    margin: 0 auto;
+    width: 84vw;
+}
 div.personal_card_name {
     padding-top: 4%;
 }
@@ -201,100 +240,22 @@ div.personal_card_name {
 #p_card_img {
     padding-top: 3vh;
     padding-bottom: 3vh;
-    max-width: 43vw;
-    max-height: 38vh;
+    max-width: 80vw;
+    max-height: 60vh;
     border-radius: 5%;
 }
-
-
-/* Tablet & Desktop Device */
-@media all and (min-width:768px) {
-
-}
-
-/* Tablet Device 
-@media all and (min-width:768px) and (max-width:1024px) {
-.users{
-    display: inline-block;
-    max-width: 100vw;
-    height: 14vh;
-    max-height: 14vh;
+.button {
+    width: 40vw;
+    height: 6vh;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0,.2);
     background-color: #fec8c9;
-    font-size: small;
-}
-
-.container {
-    margin: 0 auto;
-    text-align: center;
-    padding: 0;
-
-}
-.cards{
-    margin: 0 auto;
-    max-width: 100%;
-}
-
-.common_card{
-    display: inline;
-    float: left;
-    border: 1px;
-    border-color: gray;
-    border-radius: 5%;
-    border-style: outset;
-    width: 35vw;
-    height: 60vh;
-    margin: 0 auto;
-    background-image: url("pattern.jpg");
-    background-size: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    text-align: center;
+    border-radius: 4vw;
+    line-height: 6vh;
+    font-size: 1.5em;
     font-family: 'BM HANNA';
-   
-}
-div.timer{
-    display: inline;
-    float: left;
-    margin-top: 28vh;
-
-}
-.personal_card{
-    display: inline;
-    float: right;
-    border: 1px;
-    border-color: gray;
-    border-style: outset;
-    border-radius: 5%;
-    width: 35vw;
-    height: 60vh;
-    margin: 0 auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-image: url("pattern.jpg");
-    background-size: 80%;
-    text-align: center;
-    font-family: 'BM HANNA'
-     
 }
 
-div.common_card_name {
-    padding-top: 4%;
-}
-
-div.personal_card_name {
-    padding-top: 4%;
-}
-#c_card_img {
-    width: 20vw;
-    max-width: 30vw;
-    max-height: 40vh;
-    border-radius: 5%;
-}
-
-#p_card_img {
-    max-width: 30vw;
-    max-height: 40vh;
-    border-radius: 5%;
-}
-}*/
 /* Desktop Device */
 @media all and (min-width:768px) {
 .users{
@@ -323,9 +284,8 @@ div.personal_card_name {
     margin: 0 auto;
 }
 .center {
-    width: 10vw;
-    height: 86vh;
-    float:left;
+    width: 100%;
+    height: 15vh;
     margin: 0 auto;
 }
 .card_right {
@@ -335,30 +295,11 @@ div.personal_card_name {
     margin: 0 auto;
 }
 
-.common_card{
-    display: inline-block;
-    float: left;
-    border: 1px;
-    border-color: gray;
-    border-radius: 5%;
-    border-style: outset;
-    width: 43vw;
-    height: 5vh;
-    margin: 2vh 1vw;
-    background-image: url("pattern.jpg");
-    background-size: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    text-align: center;
-    font-family: 'BM HANNA';
-    -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-   
-}
 div.timer{
+    float: left;
     display: block;
     margin: 0 auto;
-    width: 70px;
+    width: 84vw;
 }
 
 #bar {
@@ -367,7 +308,7 @@ div.timer{
     bottom: 0;
     left:0;
     position: absolute;
-    width:100%;
+    width:66vw;
     height:0;
     background-color:#61eaef;
     border-radius:10vw;
@@ -402,8 +343,8 @@ div.timer{
     border-color: gray;
     border-style: outset;
     border-radius: 5%;
-    width: 43vw;
-    height: 82vh;
+    width: 80vw;
+    height: 65vh;
     margin: 1vw 2vh;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-image: url("pattern.jpg");
@@ -416,9 +357,10 @@ div.timer{
      
 }
 
-div.common_card_name {
-    padding-top: 4%;
+personal_card_img{
+    margin: 0 auto;
 }
+
 
 div.personal_card_name {
     padding-top: 4%;
@@ -428,6 +370,7 @@ div.personal_card_name {
     max-width: 30vw;
     max-height: 40vh;
     border-radius: 5%;
+    margin: 0 auto ;
 }
 
 #p_card_img {

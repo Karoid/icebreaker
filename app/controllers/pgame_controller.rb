@@ -1,6 +1,7 @@
 module PgameController
+  
   def ready_game
-    if true #game_state == "ready"
+    if game_state == "ready"
       # 포인트 주는 코드
       current_user.player.update(point: 1)
       # 모든 플레이이어가 레디인지 확인
@@ -23,6 +24,7 @@ module PgameController
     end
   end
   
+  
   def start_choose_game
     current_room = current_user.player.room
     
@@ -30,9 +32,21 @@ module PgameController
     current_room.players.each do |p|
       p.update(point: 0)
     end
+    # 덱에 이번 판에 쓰일 카드정보를 랜덤으로 정렬하여 집어넣습니다
+    # 모두에게 카드를 뽑아서 준다(Room(remain_deck) => Player(card_id))
+    # 질문자를 랜덤으로 뽑아 설정합니다
+    random_number = Random.new.rand(current_room.players.length)
+    if random_number != (current_room.players.length - 1)
+      question_player = current_room.players[random_number]
+      answer_player = current_room.players[random_number+1]
+    else 
+      question_player = current_room.players[random_number]
+      answer_player = current_room.players[random_number-1]
+    end
     # 현재 방 정보를 ready에서 start로 바꿉니다
-    current_room.action = "start"
+    current_room.update(action: "start", question_id: question_player.id, answer_id: answer_player.id)
     # 게임 시작 정보 전달
-    WebsocketRails[("room_"+current_room.code.to_s).to_sym].trigger(:game_data, {state: "start", random_player: current_room.players.sample})
+    WebsocketRails[("room_"+current_room.code.to_s).to_sym].trigger(:game_data,
+    {state: "start", question_player: question_player,answer_player: answer_player})
   end
 end

@@ -11,7 +11,7 @@ class GameController < WebsocketRails::BaseController
   end
 
   def room_connect
-    if Room.find_by_code(message) != nil
+    if Room.find_by_code(message) != nil && Room.find_by_code(message).action == "ready"
       puts message
       room_id = Room.select(:id).where(code: message).limit(1)[0].id
       unless Player.where(user_id: current_user.id, room_id: room_id).exists?
