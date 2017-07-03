@@ -18,6 +18,7 @@ WebsocketRails::EventMap.describe do
     subscribe :info, :to => GameController, :with_method => :info
     subscribe :disconnect, :to => GameController, :with_method => :room_disconnect
     subscribe :ready_game, :to => GameController, :with_method => :ready_game
+    subscribe :play_turn, :to => GameController, :with_method => :ngame
   end
 
 

@@ -49,7 +49,6 @@ function Clock(seconds) {
         width: maxWidth
     }, seconds*1000, function() {
         // after animate
-        $(this).css('background-color', 'black');
         //$log.html('100 %');
     })
     //$('#log').html(percent + ' %');

@@ -10,7 +10,7 @@ class HomeController < ApplicationController
        room.code = $r
        room.action = "ready"
        room.save
-       host = Player.new
+       host = current_user.player || Player.new
        host.user_id = current_user.id
        host.room_id = room.id
        host.username = current_user.username

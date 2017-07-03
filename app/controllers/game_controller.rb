@@ -11,11 +11,13 @@ class GameController < WebsocketRails::BaseController
   end
 
   def room_connect
-    if Room.find_by_code(message) != nil && Room.find_by_code(message).action == "ready"
+    connecting_room = Room.find_by_code(message)
+    if connecting_room != nil && (connecting_room.action == "ready" || Player.where(room_id: connecting_room.id, user_id: current_user.id))
       puts message
       room_id = Room.select(:id).where(code: message).limit(1)[0].id
+      
       unless Player.where(user_id: current_user.id, room_id: room_id).exists?
-         player = Player.new
+         player = current_user.player || Player.new
          player.user_id = current_user.id
          player.room_id = room_id
          player.username = current_user.username
@@ -36,7 +38,7 @@ class GameController < WebsocketRails::BaseController
   def room_disconnect
     player = Player.where(user_id: current_user.id).limit(1)[0]
     room   = Room.where(code: message["room_code"]).limit(1)[0]
-    if player.destroy
+    if room.action == "ready" && player.destroy
       WebsocketRails[("room_"+message["room_code"]).to_sym].trigger(:player_disconnect, {player_info: player})
 
       if room.players.length == 0
@@ -49,6 +51,19 @@ class GameController < WebsocketRails::BaseController
     # 현재 room의 상태를 return 하는 메소드
     current_room = current_user.player.room
     return current_room.action
+  end
+
+  def ngame
+    current_room = current_user.player.room
+    puts current_room.action
+    case current_room.action
+      when "start" then turn_question_end
+      when "question" then turn_question_end
+      when "turn_question_end" then turn_answer_end
+      when "turn_answer_end" then turn_questioner_answer_end
+      when "turn_questioner_answer_end" then question
+    end
+    
   end
 
 end

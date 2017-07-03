@@ -41,7 +41,7 @@ var Melting_Talk_Logic = {
     });
   },
   start: function(data){
-    
+    $('.users').removeClass('ready').children(".section").children("div").css("background","");
   }
 }
 
@@ -49,6 +49,8 @@ function initialize_game(data) {
   initial_room_state = data
   state = data.room_info.action
   initialize_player(data)
+  
+  console.log(data)
   
   switch (state) {
   case 'ready':

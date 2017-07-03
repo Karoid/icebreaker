@@ -33,8 +33,8 @@ module PgameController
       p.update(point: 0)
     end
     # 덱에 이번 판에 쓰일 카드정보를 랜덤으로 정렬하여 집어넣습니다
-    # 모두에게 카드를 뽑아서 준다(Room(remain_deck) => Player(card_id))
-    # 질문자를 랜덤으로 뽑아 설정합니다
+      # 모두에게 카드를 뽑아서 준다(Room(remain_deck) => Player(card_id))
+      # 질문자를 랜덤으로 뽑아 설정합니다
     random_number = Random.new.rand(current_room.players.length)
     if random_number != (current_room.players.length - 1)
       question_player = current_room.players[random_number]
