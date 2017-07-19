@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 /.c9
+
+# Ignore card images
+/public/images/cards/*

@@ -1,5 +1,4 @@
 module PgameController
-  
   def ready_game
     if game_state == "ready"
       # 포인트 주는 코드
@@ -38,10 +37,10 @@ module PgameController
     random_number = Random.new.rand(current_room.players.length)
     if random_number != (current_room.players.length - 1)
       question_player = current_room.players[random_number]
-      answer_player = current_room.players[random_number+1]
+      answer_player = current_room.players[random_number + 1]
     else 
       question_player = current_room.players[random_number]
-      answer_player = current_room.players[random_number-1]
+      answer_player = current_room.players[random_number - 1]
     end
     # 현재 방 정보를 ready에서 start로 바꿉니다
     current_room.update(action: "start", question_id: question_player.id, answer_id: answer_player.id)

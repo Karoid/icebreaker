@@ -1,4 +1,9 @@
 <%= stylesheet_link_tag    'game', media: 'all', 'data-turbolinks-track' => true %>
+
+<script>
+var my_player_id = <%=current_user.player.id%>
+</script>
+
 <%if @dev != true%>
 <script src="/js/in_game_action.js"></script>
 <script src="/js/in_game_socket.js"></script>
@@ -10,6 +15,8 @@ $(document).ready(function(){
 })
 </script>
 <%end%>
+<link rel="stylesheet" type="text/css" href="/css/slider.css">
+<script src="/js/slider.js"></script>
 
 <div class="users ready">
     <div class="section">
@@ -67,12 +74,19 @@ $(document).ready(function(){
             <img src='<%= asset_path 'girl1.png'%>' alt='girl1'/>
         </div>
         <div class="timer">
-            <!--  <div id="log"></div> -->
-            <div id="bar_bg">
-                <div id="bar"> 
-                    <img src="/images/arrow_bg.png"><img src="/images/arrow_bg.png"><img src="/images/arrow_bg.png"><img src="/images/arrow_bg.png"><img src="/images/arrow_bg.png"><img src="/images/arrow_bg.png">
+            <main role="main" data-slider-color="slider-lightBlue">
+             <section>
+                <div class="wrap">
+                  <div class="holder">
+                    <div class="demo">
+                      <div class="rkmd-slider slider-discrete slider-lightBlue">
+                        <input type="range" min="0" max="100" value="0" invert="false">
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </div>
+              </section>
+            </main>
         </div>
         <div id="answeruser">
             <img src='<%= asset_path 'girl1.png'%>' alt='girl1'/>
@@ -82,18 +96,23 @@ $(document).ready(function(){
 
 <div class="middle">    
     <div id="personal_card">
-      <p id="text">
-         Hello World!
-      </p>
-  <div id="personal_card_img">
-            <img id="p_card_img" src="<%= asset_path 'card_image.png'%>" alt='happiness'>
+     
+        <div id="personal_card_bg">
+            <img id="p_card_img" src="<%= asset_path 'card_bg.jpg'%>" alt='happiness'>
         </div>
-  <!--- <div class="personal_card_name"></div>
-        <h1>행복</h1>
-
-        <div class="personal_card_desc">
-        <p>가치관, 인생, 대학생활 등  </p>
-        </div>  --->
+        <div class="p_card_name">
+            <span id = "text_name">이별</span>
+        </div>
+        <div class="p_card_content">
+            <span id = "text_content">어린시절 당신의 첫이별은<br> 어떠했나요?</span>
+        </div>
+        <div class="p_card_img">
+            <img id="card_image" src="<%= asset_path 'card_image.jpg'%>" alt='img'>
+        </div>
+        <div class="p_card_num">
+            <span id = "text_num">1</span>
+        </div>
+        
     </div>
 </div>
 <div class="bottom">    

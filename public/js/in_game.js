@@ -11,50 +11,24 @@ $(window).unload(function(){
 });
 
 //Front_timer
-var mq = window.matchMedia( "(min-width: 1025px)" );
-if (mq.matches) {
-  // window width is more than 1025px(desktop!!!)
-  $(document).ready(function() {
-    var maxHeight = $("#bar_bg").height();
-    var duration = 6000;
-    var $log = $('#log');
-    var timer;
-    var $bar = $('#bar');
-    Horloge(maxHeight);
-    timer = setInterval('Horloge('+maxHeight+')', 100);
-
-    $bar.animate({"bottom": "0px", "height": maxHeight}, duration, function() {
-        $(this).css('background-color', 'red');
-        $log.html('100 %');
-        clearInterval(timer);
-    });
-
-});
-
-function Horloge(maxHeight) {
-    var w = $('#bar').height();
-    var percent = parseInt((w * 100) / maxHeight);
-    $('#log').html(percent + ' %');
+function checkOrder(){
+    var slider = $("div.rkmd-slider>input")
+        slider.attr('invert', !slider.attr('invert')) 
 }
-
-} else {
-  // window width is less than 1025px
-function Clock(seconds) {
-    var w = $('#bar').width();
-    var maxWidth = $("#bar_bg").width();
-    var percent = parseInt((w * 100) / maxWidth);
-    var $bar = $('#bar');
-    
-    $bar.css('width',0).animate({
-        width: maxWidth
-    }, seconds*1000, function() {
-        // after animate
-        //$log.html('100 %');
-    })
-    //$('#log').html(percent + ' %');
+function Clock(total_time){
+    var slider = $("div.rkmd-slider>input")
+    var time = 0
+    //slider 길이를 total_time으로 바꾼다.
+    slider.attr('max',total_time)
+    //1초마다 값을 1씩 올린다
+    var timer = setInterval(function(){
+        time += 1
+        $('.rkmd-slider').rkmd_rangeSlider({value: time, max: total_time});
+    },1000)
+    // total_time에 도달하면 인터벌을 끝낸다
+    setTimeout(function() {clearInterval(timer)}, 1000*total_time);
 }
 
 $(document).ready(function() {
-    Clock(100)
+    Clock(10)
 });
-}

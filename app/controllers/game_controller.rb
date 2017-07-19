@@ -40,10 +40,9 @@ class GameController < WebsocketRails::BaseController
     room   = Room.where(code: message["room_code"]).limit(1)[0]
     if room.action == "ready" && player.destroy
       WebsocketRails[("room_"+message["room_code"]).to_sym].trigger(:player_disconnect, {player_info: player})
-
-      if room.players.length == 0
-        room.destroy
-      end
+    end
+    if room.players.length == 0
+      room.destroy
     end
   end
   
@@ -54,9 +53,9 @@ class GameController < WebsocketRails::BaseController
   end
 
   def ngame
-    current_room = current_user.player.room
-    puts current_room.action
-    case current_room.action
+    current_player = current_user.player
+    puts Room.find(current_player.room_id).action
+    case Room.find(current_player.room_id).action
       when "start" then turn_question_end
       when "question" then turn_question_end
       when "turn_question_end" then turn_answer_end
