@@ -6,6 +6,8 @@
   position: relative;
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
+  padding-top: 20px;
+  margin: 0 5%;
 }
 .rkmd-slider input[type="range"] {
   overflow: hidden;

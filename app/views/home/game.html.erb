@@ -19,6 +19,11 @@ $(document).ready(function(){
 <script src="/js/slider.js"></script>
 
 <div class="users ready">
+    <div class="section_header">
+        <div class = "room_code">
+        <p>방번호: <%= $r %></p>
+        </div>
+    </div>
     <div class="section">
         <div class="user1">
         <img src='<%= asset_path 'boy1.png'%>' alt='boy1'/>
@@ -72,6 +77,7 @@ $(document).ready(function(){
     <div class="center">
         <div id="askuser">
             <img src='<%= asset_path 'girl1.png'%>' alt='girl1'/>
+            <label id="question_player"></label>
         </div>
         <div class="timer">
             <main role="main" data-slider-color="slider-lightBlue">
@@ -80,7 +86,7 @@ $(document).ready(function(){
                   <div class="holder">
                     <div class="demo">
                       <div class="rkmd-slider slider-discrete slider-lightBlue">
-                        <input type="range" min="0" max="100" value="0" invert="false">
+                        <input type="range" min="0" max="" value="0" invert=false>
                       </div>
                     </div>
                   </div>
@@ -90,15 +96,17 @@ $(document).ready(function(){
         </div>
         <div id="answeruser">
             <img src='<%= asset_path 'girl1.png'%>' alt='girl1'/>
+            <label id="answer_player"></label>
         </div>
     </div>
 </div>
+<script>
+</script>
 
-<div class="middle">    
-    <div id="personal_card">
-     
-        <div id="personal_card_bg">
-            <img id="p_card_img" src="<%= asset_path 'card_bg.jpg'%>" alt='happiness'>
+<div class="middle">
+    <div class="personal_card">
+        <div class="p_card_type">
+            <span id = "text_type">Q</span>
         </div>
         <div class="p_card_name">
             <span id = "text_name">이별</span>

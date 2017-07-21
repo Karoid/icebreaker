@@ -34,13 +34,13 @@ module PgameController
     # 덱에 이번 판에 쓰일 카드정보를 랜덤으로 정렬하여 집어넣습니다
       # 모두에게 카드를 뽑아서 준다(Room(remain_deck) => Player(card_id))
       # 질문자를 랜덤으로 뽑아 설정합니다
-    random_number = Random.new.rand(current_room.players.length)
+    random_number = rand(current_room.players.length)
     if random_number != (current_room.players.length - 1)
       question_player = current_room.players[random_number]
       answer_player = current_room.players[random_number + 1]
     else 
       question_player = current_room.players[random_number]
-      answer_player = current_room.players[random_number - 1]
+      answer_player = current_room.players[0]
     end
     # 현재 방 정보를 ready에서 start로 바꿉니다
     current_room.update(action: "start", question_id: question_player.id, answer_id: answer_player.id)

@@ -13,7 +13,9 @@ $(window).unload(function(){
 //Front_timer
 function checkOrder(){
     var slider = $("div.rkmd-slider>input")
-        slider.attr('invert', !slider.attr('invert')) 
+    if(slider.attr('invert') == true){
+    slider.attr('invert', false)
+    } else slider.attr('invert', true)
 }
 function Clock(total_time){
     var slider = $("div.rkmd-slider>input")
@@ -28,7 +30,14 @@ function Clock(total_time){
     // total_time에 도달하면 인터벌을 끝낸다
     setTimeout(function() {clearInterval(timer)}, 1000*total_time);
 }
+function changeCard(card){
+    $("#text_type").html(card.type);
+    $("#text_name").html(card.keyword);
+    $("#text_content").html(card.description);
+    $("#card_image").attr(src, card.image_url);
+}
 
 $(document).ready(function() {
-    Clock(10)
+    Clock(20)
+    
 });
