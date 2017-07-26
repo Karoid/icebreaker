@@ -1,28 +1,49 @@
 <link rel="stylesheet" href="/css/ice.css" type="text/css" />
-<div class="container">
-	<a href="#">
-	    <div class="topic">
-            <img src='<%= asset_path 'logo_small.png'%>' id="logo" alt='topic'/>
-	    </div>
-	</a>
+<script src="https://use.fontawesome.com/84384b689a.js"></script>
 
-<% if user_signed_in? %>
-    <form method="get" action="home/create_room">
-      <button type="submit" class="button buttonBlue">방만들기</button>
-    </form>
-    <button id = "button1" class="button buttonBlue part">참여하기</button><br>
-    <a href="/users/sign_out" data-confirm="로그아웃 하시겠습니까?">로그아웃</a>
-<% else %>
-
-
-<a href="/users/sign_in"><div class="button buttonBlue">로그인</div></a>
-<a href="/users/sign_up"><div class="button buttonBlue">회원가입</div></a>
-<% end %>
-  <div class="share">
-    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&mobile_iframe=true&width=116&height=20&appId" width="116" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+<div class="background">
+  <div class="container">
+  	<a href="#">
+  	    <div class="topic">
+              <img src='<%= asset_path 'logo_small.png'%>' id="logo" alt='topic'/>
+  	    </div>
+  	</a>
+  
+  <% if user_signed_in? %>
+      <form method="get" action="home/create_room">
+        <button type="submit" class="button buttonBlue">
+          방만들기</button>
+      </form>
+      <button id = "button1" class="button buttonBlue part">참여하기</button><br>
+      <button id="myBtn">Open Modal</button>
+      
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+        <!-- Modal content -->
+        <form>
+          <span>방번호를 입력하세요!</span>
+          <input name="room" id="room"><br>
+          <button class="btn btn-primary" onclick="document.getElementById(room)">
+            <i class="fa fa-sign_in"></i>
+            입장하기</div>
+        </form>
+            <span class="fa fa-close" 
+            onclick="document.getElementById('myModal').style.display='none'">닫기</span>
+        </div>
+      </div>
+      
+      <a href="/users/sign_out" data-confirm="로그아웃 하시겠습니까?">로그아웃</a>
+  <% else %>
+  
+  
+  <a href="/users/sign_in"><div class="button buttonBlue">로그인</div></a>
+  <a href="/users/sign_up"><div class="button buttonBlue">회원가입</div></a>
+  <% end %>
+    <div class="share">
+      <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&mobile_iframe=true&width=116&height=20&appId" width="116" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+    </div>
   </div>
 </div>
-
 
 
 <script>
@@ -32,13 +53,46 @@
     }
     var dispatcher = new WebSocketRails(url+'/websocket');
 
-    var test = {text: 'hello world'}
-    dispatcher.trigger('game.connection', test);
     //get my message
     dispatcher.bind('game.connection_success', function(task) {
       console.log(task.message)
     });
-
+    var modal = document.getElementById('myModal');
+    
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close");
+    var room = document.getElementById(room);
+    console.log(room)
+    // When the user clicks on the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    //    dispatcher.trigger('game.room_connect', room);
+      //  dispatcher.bind('game.room_connect_status',function(task){
+      //    if (task.status){
+      //      window.location = '/home/game/'+room
+      //    }else {
+      //      alert(task.message)
+      //      dispatcher.unbind('game.room_connect_status')
+      //    }
+        //})
+  //  })
+    }
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    
     $('#button1').on('click', function(){
         var roomcode = prompt('방 번호를 입력하세요')
         dispatcher.trigger('game.room_connect', roomcode);

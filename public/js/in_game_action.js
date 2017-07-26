@@ -17,7 +17,7 @@ function do_game_from_broadcast(data){
       do_turn_questioner_answer_end();
       break;
     case 'question':
-      do_start();
+      do_start(data);
       break;
   }
 }
@@ -38,7 +38,6 @@ function do_start(data){
   $('.room_code').remove()
   $('.section .ready').remove()
   $('.users').removeClass('ready').children(".section").children("div").css("background","");
-
 
   if(my_player_id == player.id){
     $('.button').html("질문완료");
@@ -98,10 +97,14 @@ function do_turn_answer_end(data){
 }
 
 
-function do_turn_questioner_answer_end(){
+function do_turn_questioner_answer_end(data){
   console.log('do_turn_questioner_answer_end')
   $('.button').html("내가 질문하기!");
-  $('.button').unbind("click").click(function(){
+  $('.button').bind("click").click(function(){
     dispatcher.trigger('game.play_turn');
+    console.log('rere')
+
   })
+  
+  
 }

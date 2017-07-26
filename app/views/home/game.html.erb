@@ -3,6 +3,7 @@
 <script>
 var my_player_id = <%=current_user.player.id%>
 </script>
+<script src="https://use.fontawesome.com/84384b689a.js"></script>
 
 <%if @dev != true%>
 <script src="/js/in_game_action.js"></script>
@@ -28,13 +29,13 @@ $(document).ready(function(){
         <div class="user1">
         <img src='<%= asset_path 'boy1.png'%>' alt='boy1'/>
         <div class="player_username">
-
+        <span>user1</span>
         </div>
         </div>
         <div class="user2">
         <img src='<%= asset_path 'boy2.png'%>' alt='boy2'/>
         <div class="player_username">
-
+        <span>user2</span>
         </div>
         </div>
     </div>
@@ -100,13 +101,17 @@ $(document).ready(function(){
         </div>
     </div>
 </div>
-<script>
-</script>
 
 <div class="middle">
     <div class="personal_card">
         <div class="p_card_type">
             <span id = "text_type">Q</span>
+        </div>
+        <div class="p_card_img">
+            <img id="card_image" src="<%= asset_path 'cards/card-04.png'%>" alt='img'>
+        </div>
+        <div class="p_card_img">
+            <img id="sep_bar" src="<%= asset_path 'sep_bar.png'%>" alt='img'>
         </div>
         <div class="p_card_name">
             <span id = "text_name">이별</span>
@@ -114,9 +119,7 @@ $(document).ready(function(){
         <div class="p_card_content">
             <span id = "text_content">어린시절 당신의 첫이별은<br> 어떠했나요?</span>
         </div>
-        <div class="p_card_img">
-            <img id="card_image" src="<%= asset_path 'card_image.jpg'%>" alt='img'>
-        </div>
+        
         <div class="p_card_num">
             <span id = "text_num">1</span>
         </div>
