@@ -41,7 +41,7 @@ var Melting_Talk_Logic = {
     });
   },
   start: function(data){
-    $('.users').removeClass('ready').children(".section").children("div").css("background","");
+   // $('.users').removeClass('ready').children(".section").children("div").css("background","");
   }
 }
 

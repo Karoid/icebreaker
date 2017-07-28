@@ -15,6 +15,27 @@ margin: 0; padding: 0;
 }
 
 /* Mobile Device */
+.header{
+    width: 100vw;
+    height: 23vh;
+    background-color: #d8f3fa;
+}
+#menu{
+    color: black;
+    margin: 1.6vh 2vw 0 41vw;
+    font-size: 20px;
+    float: left;
+}
+#back{
+  margin:1.6vh 41vw 0 5vw;
+  float: left;
+}
+.playingCard{
+    width: 10vw;
+    height: 5vh;
+    float: left;
+    margin-left:22vw;
+}
 .users{
     display: flex;
     flex-wrap: nowrap;
@@ -36,8 +57,8 @@ margin: 0; padding: 0;
     transition:all 1s;
 }
 .section {
-    height:10vh;
-    width:33.5vw;
+    height:8vh;
+    width:12vw;
     position:absolute;
     -webkit-transition:all 1s; /* Safari */
     transition:all 1s;
@@ -118,12 +139,18 @@ margin: 0; padding: 0;
     height:70%;
 }
 
+.topic{
+    font-family: 'BM HANNA';
+    font-size: 2em;
+    float: left
+}
+
 .container {
     text-align:center;
     width: 100vw;
     margin: 0 auto;
     padding: 0;
-    height: 86vh;
+    height: 100vh;
     background-color: #d8f3fa;
 }
 .top {
@@ -131,15 +158,15 @@ margin: 0; padding: 0;
     margin: 0 auto;
     padding: 0;
     text-align: center;
-    height: 15vh;
+    height: 10vh;
     background-color: #d8f3fa;
 }
 .middle {
     width: 100%;
     margin: 0 auto;
     padding: 0;
-    padding: 0 0 2vh 0;
-    height: 61vh;
+    padding: 1vh 0 2vh 0;
+    height: 55vh;
     clear:both;
     background-color: #d8f3fa;
 }
@@ -156,7 +183,7 @@ margin: 0; padding: 0;
     border-style: outset;
     width: 70vw;
     margin-left: 15vw;
-    height: 90%;
+    height: 55vh;
     overflow:hidden;
     background-size: 80%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -190,6 +217,9 @@ margin: 0; padding: 0;
     margin: auto 0 auto auto;
     width: 70px;
     margin-top: 2.5vh;
+}
+#c_card_image{
+    width: 20vw;
 }
 
 #card_image{

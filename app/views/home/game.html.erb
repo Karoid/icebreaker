@@ -19,7 +19,7 @@ $(document).ready(function(){
 <link rel="stylesheet" type="text/css" href="/css/slider.css">
 <script src="/js/slider.js"></script>
 
-<div class="users ready">
+<div class="users ready" id="ready">
     <div class="section_header">
         <div class = "room_code">
         <p>방번호: <%= $r %></p>
@@ -73,8 +73,13 @@ $(document).ready(function(){
 </div>
 
 <div class="container">
+<div class="header">
+    <i id="back" class="fa fa-undo"></i>
+    <i id="menu" class="fa fa-bars"></i>
+    <div class="playingCard"><img style="width:70; height:70" id="c_card_image" src="<%= asset_path 'cards/card-02.png'%>"></div>
+    <div class="topic">배고픔</div>
+</div>
 <div class="top">
-    <h1>Topic</h1>
     <div class="center">
         <div id="askuser">
             <img src='<%= asset_path 'girl1.png'%>' alt='girl1'/>
@@ -132,5 +137,3 @@ $(document).ready(function(){
     </div>
 </div>
 </div>
-
-

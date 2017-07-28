@@ -1,6 +1,7 @@
 module NgameController
   
   def turn_question_end
+    puts "질문완료 실행"
     current_player = current_user.player
     current_room = Room.find(current_player.room_id)
     question_player = Player.find(current_room.question_id)
@@ -16,6 +17,7 @@ module NgameController
   
   
   def turn_answer_end
+    puts "답변자 답변완료 실행"
     current_player = current_user.player
     current_room = Room.find(current_player.room_id)
     question_player = Player.find(current_room.question_id)
@@ -31,6 +33,7 @@ module NgameController
   
   
   def turn_questioner_answer_end
+    puts "질문자 답변완료 실행"
     current_player = current_user.player
     current_room = Room.find(current_player.room_id)
     question_player = Player.find(current_room.question_id)
@@ -50,28 +53,26 @@ module NgameController
   
   
   def question
+    puts "내가 질문하기 실행"
     current_player = current_user.player
     current_room = Room.find(current_player.room_id)
     question_player = Player.find(current_room.question_id)
     answer_player = Player.find(current_room.answer_id)
-    qid = question_player.id
-    aid = answer_player.id
-    # 본인이 질문한다는 의사를 표시한 후
     
-    puts 'cccccckkk'
-    # 이전의 질문자를 답변자로 설정하고, 현재 신청한 사람을 질문자로 설정한다.(Room(question_id,answer_id))
-    current_room.update(answer_id: qid)
-    answer_player = current_room.answer_id
-    
-    # 질문 신청한 사람 정보 받아오기
-    current_room.update(question_id: current_player.id)
-    question_id = current_room.question_id
-    
-    # 질문자의 타이머 종료 시간을 방 정보에 추가한다(Room(timeout))
-    # 방의 상태를 질문중으로 바꾼다
-    current_room.update(action: "question", question_id: question_player.id, answer_id: answer_player.id)
-    WebsocketRails[("room_"+current_room.code.to_s).to_sym].trigger(:game_data,
-    {state: "question", question_player: question_player, answer_player: answer_player})
+    if current_user.player.id != current_room.question_id 
+      # 이전의 질문자를 답변자로 설정하고
+      current_room.update(answer_id: question_player.id)
+      answer_player = Player.find(current_room.answer_id)
+      # 현재 신청한 사람을 질문자로 설정한다.
+      current_room.update(question_id: current_user.player.id)
+      question_player = Player.find(current_room.question_id)
+
+      # 질문자의 타이머 종료 시간을 방 정보에 추가한다(Room(timeout))
+      # 방의 상태를 질문중으로 바꾼다
+      current_room.update(action: "question")
+      WebsocketRails[("room_"+current_room.code.to_s).to_sym].trigger(:game_data,
+      {state: "question", question_player: question_player, answer_player: answer_player})
+    end
   end
   
 end
