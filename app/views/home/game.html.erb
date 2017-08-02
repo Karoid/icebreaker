@@ -76,8 +76,10 @@ $(document).ready(function(){
 <div class="header">
     <i id="back" class="fa fa-undo"></i>
     <i id="menu" class="fa fa-bars"></i>
-    <div class="playingCard"><img style="width:70; height:70" id="c_card_image" src="<%= asset_path 'cards/card-02.png'%>"></div>
-    <div class="topic">배고픔</div>
+    <div class="playingCard">
+        <img id="c_card_image" src="<%= asset_path 'cards/card-02.png'%>">
+        <div class="topic">배고픔</div>
+    </div>
 </div>
 <div class="top">
     <div class="center">

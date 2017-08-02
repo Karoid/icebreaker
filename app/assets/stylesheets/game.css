@@ -31,10 +31,9 @@ margin: 0; padding: 0;
   float: left;
 }
 .playingCard{
-    width: 10vw;
-    height: 5vh;
+    width: 56vw;
     float: left;
-    margin-left:22vw;
+    margin:0 22vw;
 }
 .users{
     display: flex;
@@ -142,7 +141,7 @@ margin: 0; padding: 0;
 .topic{
     font-family: 'BM HANNA';
     font-size: 2em;
-    float: left
+    line-height: 20vw
 }
 
 .container {
@@ -174,7 +173,7 @@ margin: 0; padding: 0;
     width: 100vw;
     margin: 0 auto;
     padding: 0;
-    height: 7vh;
+    height: 9vh;
 }
 
 .personal_card{
@@ -220,6 +219,7 @@ margin: 0; padding: 0;
 }
 #c_card_image{
     width: 20vw;
+    float:left;
 }
 
 #card_image{
@@ -288,11 +288,10 @@ div.personal_card_name {
 }
 .button {
     width: 100vw;
-    height: 8vh;
+    height: 9vh;
     margin: 0 auto;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0,.2);
     background-color: white;
-    line-height: 8vh;
+    line-height: 9vh;
     font-size: 1.5em;
     font-family: 'BM HANNA';
 }
