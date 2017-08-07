@@ -39,6 +39,8 @@ function do_start(data){
   $('.section .ready').remove()
   $('.users').removeClass(ready).children("div");
   $('.users').removeClass('ready').children(".section").children("div").css("display","none");
+  Clock(180)
+  loadCard(data.player_info[0].id)
 
   if(my_player_id == player.id){
     $('.button').html("질문완료");
@@ -69,7 +71,7 @@ function do_turn_question_end(data){
   console.log('do_turn_question_end2')
   if(my_player_id == player.id){
     $('.button').html("답변완료");
-    $('.button').bind("click").click(function(){
+    $('.button').unbind("click").click(function(){
       dispatcher.trigger('game.play_turn');
     })  
   }
@@ -88,7 +90,7 @@ function do_turn_answer_end(data){
   console.log('do_turn_answer_end3')
   if(my_player_id == player.id){
     $('.button').html("답변완료");
-    $('.button').bind("click").click(function(){
+    $('.button').unbind("click").click(function(){
       dispatcher.trigger('game.play_turn');
     }) 
   }
@@ -112,7 +114,7 @@ function do_turn_questioner_answer_end(data){
   }
   else{
     $('.button').html("내가 질문하기!");
-    $('.button').bind("click").click(function(){
+    $('.button').unbind("click").click(function(){
       dispatcher.trigger('game.play_turn');
       console.log('next question click4-1')
     })  
@@ -121,16 +123,10 @@ function do_turn_questioner_answer_end(data){
 
 function do_question(data){
   var player = data.question_player
-  /*console.log('question5')
-  $('.button').html("질문완료");
-  $('.button').bind("click").click(function(){
-      dispatcher.trigger('game.play_turn');
-      console.log('이게 눌리나5-1??')
-    })
-}*/
+  console.log('question5',player)
   if(my_player_id == player.id){
     $('.button').html("질문완료");
-    $('.button').bind("click").click(function(){
+    $('.button').unbind("click").click(function(){
       dispatcher.trigger('game.play_turn');
       console.log('이게 눌리나5-1??')
     })
@@ -142,3 +138,4 @@ function do_question(data){
     })
   }
 }
+

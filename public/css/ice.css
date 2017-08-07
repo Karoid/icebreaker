@@ -1,8 +1,10 @@
 /*기존 css=>필요xxxx*/
-body{
+.body{
+    width: 100vw;
+    height: 100vh;
     margin:0;
-    margin-top: 20vh;
-    background-color:#d8f3fa;
+    padding-top: 23vh;
+    background-color: #d8f3fa;
 }
 #mainContent {
 	font-family: Arial, Helvetica, sans-serif;
@@ -41,7 +43,7 @@ play꺼*/
 
 .container{
     max-width: 70vw;
-    margin: 10vh auto 0 auto;
+    margin: 0 auto;
     text-align: center;
     padding: 0;
 }
@@ -108,11 +110,11 @@ a:hover{
   position: relative;
   display: inline-block;
   padding: 12px 24px;
-  margin: .3em 0 1em 0;
+  margin: .3rem 0 1rem 0;
   max-width: 120px;
   vertical-align: middle;
   color: #264971;
-  font-size: 0.7rem;
+  font-size: 1rem;
   line-height: 20px;
   -webkit-font-smoothing: antialiased;
   text-align: center;
@@ -183,5 +185,6 @@ span{
     #logo{
     	width:200px;
     	max-width:auto;
+    	margin-bottom: 4vh;
     }
 }

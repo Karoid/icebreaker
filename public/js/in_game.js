@@ -36,8 +36,13 @@ function changeCard(card){
     $("#text_content").html(card.description);
     $("#card_image").attr(src, card.image_url);
 }
-
-$(document).ready(function() {
-    Clock(20)
-    
-});
+function loadCard(id, data){
+    for (var i=0; i<data.deck_info.length; i++){
+        if (id == data.deck_info[i].id) {
+           var image_url = data.deck_info[i].image_url;
+           var type = data.deck_info[i].type;
+           var point = data.deck_info[i].point;
+           var keyword = data.deck_info[i].keywor;
+        }
+    }
+}

@@ -49,6 +49,7 @@ module NgameController
       WebsocketRails[("room_"+current_room.code.to_s).to_sym].trigger(:game_data,
       {state: "turn_questioner_answer_end", question_player: question_player, answer_player: answer_player})
     end
+    give_card_to_player(current_player.id)
   end
   
   

@@ -208,11 +208,10 @@ form {
 
 .buttonBlue {
   background: #264971;
-  text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
   font-size: 1rem;
 }
 
-.buttonBlue:hover { background: #d8f3fa; }
+.buttonBlue:hover { background: #ffffff; color: #264971; border: 0.5px solid #9ea2a7;}
 
 @media(max-width:768px){
     body{margin:5px;}

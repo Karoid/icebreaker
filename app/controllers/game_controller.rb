@@ -13,7 +13,6 @@ class GameController < WebsocketRails::BaseController
   def room_connect
     connecting_room = Room.find_by_code(message)
     if connecting_room != nil && (connecting_room.action == "ready" || Player.where(room_id: connecting_room.id, user_id: current_user.id))
-      puts message
       room_id = Room.select(:id).where(code: message).limit(1)[0].id
       
       unless Player.where(user_id: current_user.id, room_id: room_id).exists?
@@ -21,6 +20,7 @@ class GameController < WebsocketRails::BaseController
          player.user_id = current_user.id
          player.room_id = room_id
          player.username = current_user.username
+         player.online = true
          player.save
          WebsocketRails[("room_"+message).to_sym].trigger(:player_enter, {player_info: player})
       end
@@ -32,7 +32,7 @@ class GameController < WebsocketRails::BaseController
 
   def info
     room = Room.where(code: message["room_code"]).limit(1)[0]
-    send_message :info, {player_info: room.players, room_info:room}, :namespace => 'game'
+    send_message :info, {player_info: room.players, room_info:room, deck_info: Card.all}, :namespace => 'game'
   end
 
   def room_disconnect
@@ -40,10 +40,22 @@ class GameController < WebsocketRails::BaseController
     room   = Room.where(code: message["room_code"]).limit(1)[0]
     if room.action == "ready" && player.destroy
       WebsocketRails[("room_"+message["room_code"]).to_sym].trigger(:player_disconnect, {player_info: player})
+      
+      if room.players.length == 0
+        room.destroy
+        return 0
+      end
     end
-    if room.players.length == 0
+    
+    current_user.player.update(online: false)
+    
+    room.players.each do |p|
+      if p.online == true
+        break
+      end
       room.destroy
     end
+
   end
   
   def game_state
@@ -63,6 +75,26 @@ class GameController < WebsocketRails::BaseController
       when "turn_questioner_answer_end" then question
     end
     
+  end
+  
+  private
+  
+  def give_card_to_player(player_id)
+    player = Player.find(player_id)
+    #만약 카드가 있다면 버린다
+    if player.card_id != nil
+      abandon_deck = JSON.parse(room.abandon_deck)
+      abandon_deck.push(player.card)
+      room.update(abandon_deck: abandon_deck)
+    end
+    player.update(card_id: draw_from_deck(player.room))
+  end
+  
+  def draw_from_deck(room)
+    remain_deck = JSON.parse(room.remain_deck)
+    drawed_card = remain_deck.pop
+    room.update(remain_deck: remain_deck)
+    return drawed_card
   end
 
 end

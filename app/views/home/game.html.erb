@@ -22,7 +22,7 @@ $(document).ready(function(){
 <div class="users ready" id="ready">
     <div class="section_header">
         <div class = "room_code">
-        <p>방번호: <%= $r %></p>
+        <span>방번호: <%= $r %></span>
         </div>
     </div>
     <div class="section">
@@ -74,11 +74,11 @@ $(document).ready(function(){
 
 <div class="container">
 <div class="header">
-    <i id="back" class="fa fa-undo"></i>
-    <i id="menu" class="fa fa-bars"></i>
+    <i id="back" class="fa fa-undo" style="cursor:pointer;" onclick="location.href='https://melting-talk-karoid.c9users.io/';"></i>
+    <i id="menu" class="fa fa-bars" style="cursor:pointer;"></i>
     <div class="playingCard">
         <img id="c_card_image" src="<%= asset_path 'cards/card-02.png'%>">
-        <div class="topic">배고픔</div>
+        <div class="topic" id="topic">배고픔</div>
     </div>
 </div>
 <div class="top">
@@ -130,11 +130,11 @@ $(document).ready(function(){
         <div class="p_card_num">
             <span id = "text_num">1</span>
         </div>
-        
     </div>
 </div>
+
 <div class="bottom">    
-    <div class="button">
+    <div class="button" style="cursor:pointer;">
         질문중 · · ·
     </div>
 </div>

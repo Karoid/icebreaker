@@ -23,19 +23,21 @@ module PgameController
     end
   end
   
-  
   def start_choose_game
     current_room = current_user.player.room
     
+    # 덱에 이번 판에 쓰일 카드정보를 랜덤으로 정렬하여 집어넣습니다
+    shuffled_deck = Card.all.ids.shuffle
+    current_room.update(remain_deck: shuffled_deck)
+    
     # 각 플레이어 point 초기화
+    # 모두에게 카드를 뽑아서 준다(Room(remain_deck) => Player(card_id))
     current_room.players.each do |p|
       p.update(point: 0)
+      give_card_to_player(p.id)
     end
     
-    # 덱에 이번 판에 쓰일 카드정보를 랜덤으로 정렬하여 집어넣습니다
-    # 모두에게 카드를 뽑아서 준다(Room(remain_deck) => Player(card_id))
     
-      
     # 질문자를 랜덤으로 뽑아 설정합니다
     random_number = rand(current_room.players.length)
     if random_number != (current_room.players.length - 1)

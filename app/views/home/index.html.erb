@@ -1,6 +1,11 @@
+<head>
 <link rel="stylesheet" href="/css/ice.css" type="text/css" />
 <script src="https://use.fontawesome.com/84384b689a.js"></script>
-
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+  <div class="body">
 <div class="container">
 	<a href="#">
 	    <div class="topic">
@@ -19,12 +24,11 @@
       <div class="modal-content">
       <!-- Modal content -->
         <span>방번호를 입력하세요!</span>
-        <input name="room" id="room"><br>
-        <button class="btn btn-primary" id="enter_room">
-          <i class="fa fa-sign_in"></i>
-          입장하기
+        <input class="form-control" name="room" id="room"><br>
+        <button class="btn btn-primary btn-xs" id="enter_room">
+          <span class="fa fa-sign_in">입장하기</span>
         </button>
-        <button class="btn btn-primary" id="close_modal">
+        <button class="btn btn-default btn-xs" id="close_modal">
           <span class="fa fa-close" 
           onclick="document.getElementById('myModal').style.display='none'">닫기</span>
         </button>
@@ -42,7 +46,7 @@
     <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&mobile_iframe=true&width=116&height=20&appId" width="116" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
   </div>
 </div>
-
+</div>
 
 <script>
     var url = window.location.hostname
@@ -93,3 +97,5 @@
         }
     }
 </script>
+
+</body>

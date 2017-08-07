@@ -14,6 +14,7 @@ class HomeController < ApplicationController
        host.user_id = current_user.id
        host.room_id = room.id
        host.username = current_user.username
+       host.online = true
        host.save
 
     
