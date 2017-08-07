@@ -140,7 +140,7 @@ margin: 0; padding: 0;
 
 .topic{
     font-family: 'BM HANNA';
-    font-size: 2em;
+    font-size: 2rem;
     line-height: 20vw
 }
 
@@ -292,7 +292,7 @@ div.personal_card_name {
     margin: 0 auto;
     background-color: white;
     line-height: 9vh;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-family: 'BM HANNA';
 }
 

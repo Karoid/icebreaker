@@ -1,6 +1,7 @@
 /*기존 css=>필요xxxx*/
 body{
     margin:0;
+    margin-top: 20vh;
     background-color:#d8f3fa;
 }
 #mainContent {
@@ -111,7 +112,7 @@ a:hover{
   max-width: 120px;
   vertical-align: middle;
   color: #264971;
-  font-size: 2px;
+  font-size: 0.7rem;
   line-height: 20px;
   -webkit-font-smoothing: antialiased;
   text-align: center;
@@ -130,7 +131,7 @@ a:hover{
 
 .buttonBlue {
   background: white;
-  text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
+  text-shadow: 0.2px 0.2px 0 rgba(39, 110, 204, .5);
 }
 
 .buttonBlue:hover { background: #264971; color:white; }

@@ -12,8 +12,8 @@ form h2{
 
 form {
 	width: 380px;
-	margin: 4em auto;
-	padding: 1em 2em 2em 2em;
+	margin: 4rem auto;
+	padding: 1rem 2rem 2rem 2rem;
 	background: #fafafa;
 	border: 1px solid #ebebeb;
 	box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
@@ -66,7 +66,7 @@ form {
   z-index: 1;
   width: 1rem;
   height: 1rem;
-  border: 2px solid #b48f91;
+  border: 2px solid #264971;
 }
 .checkbox:checked:before {
   -webkit-transform: rotate(-45deg);
@@ -117,7 +117,7 @@ form {
 	top: -20px;
   transform: scale(.75); left: -2px;
 	/* font-size: 14px; */
-	color: #da6869;
+	color: #264971;
 }
 
 .group input:focus ~ label#password_confirm_label, .group input.used ~ label#password_confirm_label {
@@ -137,7 +137,7 @@ form {
 	width: 0;
 	bottom: 1px; 
 	position: absolute;
-	background: #da6869; 
+	background: #d8f3fa; 
 	transition: all 0.2s ease;
 }
 
@@ -185,7 +185,7 @@ form {
   position: relative;
   display: inline-block;
   padding: 12px 24px;
-  margin: 1em 0;
+  margin: 1rem 0;
   width: 100%;
   vertical-align: middle;
   color: #fff;
@@ -207,11 +207,12 @@ form {
 /* Button modifiers */
 
 .buttonBlue {
-  background: #fd999a;
+  background: #264971;
   text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
+  font-size: 1rem;
 }
 
-.buttonBlue:hover { background: #fec8c9; }
+.buttonBlue:hover { background: #d8f3fa; }
 
 @media(max-width:768px){
     body{margin:5px;}
