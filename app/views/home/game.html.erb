@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag    'game', media: 'all', 'data-turbolinks-track' => true %>
 
 <script>
-var my_player_id = <%=current_user.player.id%>
+    var my_player_id = <%=current_user.player.id%>
 </script>
 <script src="https://use.fontawesome.com/84384b689a.js"></script>
 
@@ -74,10 +74,10 @@ $(document).ready(function(){
 
 <div class="container">
 <div class="header">
-    <i id="back" class="fa fa-undo" style="cursor:pointer;" onclick="location.href='https://melting-talk-karoid.c9users.io/';"></i>
-    <i id="menu" class="fa fa-bars" style="cursor:pointer;"></i>
+    <a href="/"><i id="back" class="fa fa-undo" style="cursor:pointer;"></i></a>
+    <a href="/"><i id="menu" class="fa fa-bars" style="cursor:pointer;"></i></a>
     <div class="playingCard">
-        <img id="c_card_image" src="<%= asset_path 'cards/card-02.png'%>">
+        <img id="c_card_image" width="50" height="50" src="/images/cards/card-02.png">
         <div class="topic" id="topic">배고픔</div>
     </div>
 </div>
@@ -115,7 +115,7 @@ $(document).ready(function(){
             <span id = "text_type">Q</span>
         </div>
         <div class="p_card_img">
-            <img id="card_image" src="<%= asset_path 'cards/card-04.png'%>" alt='img'>
+            <img id="card_image" src="/images/cards/card-04.png" alt='img'>
         </div>
         <div class="p_card_img">
             <img id="sep_bar" src="<%= asset_path 'sep_bar.png'%>" alt='img'>

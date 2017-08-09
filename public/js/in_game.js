@@ -10,39 +10,29 @@ $(window).unload(function(){
   dispatcher.trigger('game.disconnect', message);
 });
 
-//Front_timer
-function checkOrder(){
+function Clock(total_time, side){
     var slider = $("div.rkmd-slider>input")
-    if(slider.attr('invert') == true){
-    slider.attr('invert', false)
-    } else slider.attr('invert', true)
-}
-function Clock(total_time){
-    var slider = $("div.rkmd-slider>input")
+    var slider_rkmd = $("div.rkmd-slider")
     var time = 0
     //slider 길이를 total_time으로 바꾼다.
     slider.attr('max',total_time)
+    // 슬라이더 초기화
+    if (slider_rkmd.find('.slider-fill')) {
+        var slider_fill    = slider_rkmd.find('.slider-fill');
+        var slider_handle  = slider_rkmd.find('.slider-handle');
+        slider_fill.attr('style','')
+        slider_handle.attr('style','')
+    }
     //1초마다 값을 1씩 올린다
     var timer = setInterval(function(){
         time += 1
-        $('.rkmd-slider').rkmd_rangeSlider({value: time, max: total_time});
+        $('.rkmd-slider').rkmd_rangeSlider({value: time, max: total_time}, side);
     },1000)
     // total_time에 도달하면 인터벌을 끝낸다
     setTimeout(function() {clearInterval(timer)}, 1000*total_time);
+    return timer
 }
-function changeCard(card){
-    $("#text_type").html(card.type);
-    $("#text_name").html(card.keyword);
-    $("#text_content").html(card.description);
-    $("#card_image").attr(src, card.image_url);
+function loadCard () {
+    dispatcher.trigger('game.get_card',message);
 }
-function loadCard(id, data){
-    for (var i=0; i<data.deck_info.length; i++){
-        if (id == data.deck_info[i].id) {
-           var image_url = data.deck_info[i].image_url;
-           var type = data.deck_info[i].type;
-           var point = data.deck_info[i].point;
-           var keyword = data.deck_info[i].keywor;
-        }
-    }
-}
+          

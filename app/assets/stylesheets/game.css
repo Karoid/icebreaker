@@ -32,13 +32,14 @@ margin: 0; padding: 0;
     float: left;
 }
 #back{
-  margin:1.6vh 41vw 0 5vw;
-  float: left;
+    color: black;
+    margin:1.6vh 41vw 0 5vw;
+    float: left;
 }
 .playingCard{
     width: 56vw;
     float: left;
-    margin:0 22vw;
+    margin:2vh 22vw 0 22vw;
 }
 .users{
     display: flex;
@@ -223,8 +224,8 @@ margin: 0; padding: 0;
     margin-top: 2.5vh;
 }
 #c_card_image{
-    width: 20vw;
     float:left;
+    margin-top: 3vh
 }
 
 #card_image{

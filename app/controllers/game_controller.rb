@@ -32,7 +32,14 @@ class GameController < WebsocketRails::BaseController
 
   def info
     room = Room.where(code: message["room_code"]).limit(1)[0]
+    room.remain_deck = "[SECRET]"
     send_message :info, {player_info: room.players, room_info:room, deck_info: Card.all}, :namespace => 'game'
+  end
+  
+  def get_card
+    room = Room.where(code: message["room_code"]).limit(1)[0]
+    room.remain_deck = "[SECRET]"
+    send_message :get_card, {player_info: room.players, room_info:room, deck_info: Card.all}, :namespace => 'game'
   end
 
   def room_disconnect
@@ -69,24 +76,34 @@ class GameController < WebsocketRails::BaseController
     puts Room.find(current_player.room_id).action
     case Room.find(current_player.room_id).action
       when "start" then turn_question_end
-      when "question" then turn_question_end
       when "turn_question_end" then turn_answer_end
       when "turn_answer_end" then turn_questioner_answer_end
       when "turn_questioner_answer_end" then question
+      when "question" then turn_question_end
+      #when "question" then game_end
+      #when "game_end" then turn_question_end
     end
     
   end
+  
   
   private
   
   def give_card_to_player(player_id)
     player = Player.find(player_id)
     #만약 카드가 있다면 버린다
+ 
     if player.card_id != nil
-      abandon_deck = JSON.parse(room.abandon_deck)
-      abandon_deck.push(player.card)
+      room = Room.find(player.room_id)
+      if room.abandon_deck != nil
+        abandon_deck = JSON.parse(room.abandon_deck)
+      else10
+        abandon_deck = []
+      end
+      abandon_deck.push(player.card_id)
       room.update(abandon_deck: abandon_deck)
     end
+
     player.update(card_id: draw_from_deck(player.room))
   end
   

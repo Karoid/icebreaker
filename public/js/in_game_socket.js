@@ -8,15 +8,19 @@ var room_code = window.location.pathname.split("/")[url_array.length - 1]
 var channel = dispatcher.subscribe('room_'+room_code);
 var message = {room_code: room_code}
 var initial_room_state = new Object()
+var timer_tag = new Object()
 
 var Melting_Talk_Logic = {
   onload: function(){
     /***** trigger *****/
     dispatcher.trigger('game.info',message);
 
+    /***** bind *****/
+
     dispatcher.bind('game.info', initialize_game);
     
-    /***** bind *****/
+    dispatcher.bind('game.get_card', change_card);
+    
     channel.bind('game_data', do_game_from_broadcast);
     
     channel.bind('player_disconnect', function(data) {
@@ -46,11 +50,11 @@ var Melting_Talk_Logic = {
 }
 
 function initialize_game(data) {
+  console.log(data)
+  
   initial_room_state = data
   state = data.room_info.action
   initialize_player(data)
-  
-  console.log(data)
   
   switch (state) {
   case 'ready':
@@ -73,4 +77,53 @@ function initialize_player(data){
       do_ready(el)
     }
   });
+}
+
+function change_card(data){
+  //덱에서 맞는 카드를 찾는다
+  var my_card_id, title_card_id
+  var card_info, title_info = new Object()
+
+  for (var j = 0; j < data.player_info.length; j++) {
+    if (data.player_info[j].id == my_player_id) {
+      my_card_id = data.player_info[j].card_id
+    }
+    if (data.player_info[j].id == data.room_info.question_id) {
+      title_card_id = data.player_info[j].card_id
+    }
+  }
+  for (var i = 0; i < data.deck_info.length; i++) {
+      if (data.deck_info[i].id == my_card_id) {
+          card_info = data.deck_info[i]
+      }
+      
+      if (data.deck_info[i].id == title_card_id) {
+          title_info = data.deck_info[i]
+      }
+  }
+  
+  console.log("모든 데이터 " + data + "\n",
+  "내 카드 데이터 " + card_info + "\n",
+  "질문자 데이터 " + title_info + "\n")
+  //그 카드의 정보를 화면에 띄운다
+
+  var image_url = card_info.image_url;
+  var type = card_info.type;
+  var point = card_info.point;
+  var keyword = card_info.keyword;
+  var content = card_info.description;
+  $("#text_name").html(keyword)
+  $("#text_content").html(content)
+  $("#card_image").attr('src',image_url);
+  $("#text_num").html(point)
+  $("#topic").html(title_info.keyword);
+  $('#c_card_image').attr('src',title_info.image_url);
+  switch (type) {
+      case "question_card":
+          $("#text_type").html("Q")
+      case "wide_rage_card":
+          $("#text_type").html("☆")
+      case "event_card":
+          $("#text_type").html("E")
+  }
 }

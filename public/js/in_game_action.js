@@ -1,5 +1,5 @@
 function do_game_from_broadcast(data){
-  
+  console.log("서버로부터 정보 받음",data)
   switch (data.state) {
     case 'ready':
       do_ready(data.player);
@@ -24,7 +24,7 @@ function do_game_from_broadcast(data){
 
 //action
 
-function do_ready(player){
+function do_ready(player) {
     console.log('do_ready')
     $('.id_'+player.id).css('background','#00BCD4')
 }
@@ -34,13 +34,16 @@ function do_start(data){
   var player = data.question_player
   console.log("do start1")
   
+  //플레이어들이 받은 카드의 내용을 받기 위해 서버에 정보를 요청합니다
+  dispatcher.trigger('game.info',message);
+  loadCard()
+
   //레디상태의 화면을 플레이 화면으로 전환하고, 레디상태를 지웁니다
   $('.room_code').remove()
   $('.section .ready').remove()
   $('.users').removeClass(ready).children("div");
   $('.users').removeClass('ready').children(".section").children("div").css("display","none");
-  Clock(180)
-  loadCard(data.player_info[0].id)
+  timer_tag = Clock(180,"left")
 
   if(my_player_id == player.id){
     $('.button').html("질문완료");
@@ -69,6 +72,10 @@ $("#readybutton").click(function(){
 function do_turn_question_end(data){
   var player = data.answer_player
   console.log('do_turn_question_end2')
+  
+  clearInterval(timer_tag)
+  timer_tag = Clock(180,"right")
+  
   if(my_player_id == player.id){
     $('.button').html("답변완료");
     $('.button').unbind("click").click(function(){
@@ -88,6 +95,10 @@ function do_turn_question_end(data){
 function do_turn_answer_end(data){
   var player = data.question_player
   console.log('do_turn_answer_end3')
+  
+  clearInterval(timer_tag)
+  timer_tag = Clock(180,"left")
+  
   if(my_player_id == player.id){
     $('.button').html("답변완료");
     $('.button').unbind("click").click(function(){
@@ -106,6 +117,11 @@ function do_turn_answer_end(data){
 function do_turn_questioner_answer_end(data){
   console.log('do_turn_questioner_answer_end4')
   var player = data.question_player
+  
+  clearInterval(timer_tag)
+  
+  loadCard()
+    
   if(my_player_id == player.id){
     $('.button').html("다음 질문자 선택 중");
     $('.button').unbind("click").click(function(){
@@ -138,4 +154,6 @@ function do_question(data){
     })
   }
 }
+
+
 

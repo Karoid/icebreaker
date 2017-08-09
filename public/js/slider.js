@@ -26,7 +26,7 @@ $(document).ready(function() {
 /* Range Slider Function */
 (function($) {
 
-  $.fn.rkmd_rangeSlider = function(val) {
+  $.fn.rkmd_rangeSlider = function(val, side) {
     var self, slider_width, slider_offset, curnt, sliderContinuous, sliderDiscrete, range, slider, max;
     self             = $(this);
     max = val.max_value
@@ -48,17 +48,14 @@ $(document).ready(function() {
         slider_handle = slider.find('.slider-handle');
         slider_label  = slider.find('.slider-label');
 
-        var range_val = parseInt(range.val());
-        slider_fill.css('width', range_val +'%');
-        slider_handle.css('left', range_val +'%');
-        slider_label.find('span').text(range_val);
+        slider_move(self, val.value, val.max,side);
       });
     }
     
     $('.slider-handle').addClass('is-active')
     
     if (val) {
-      slider_move(self, val.value, val.max);
+      
     }
   };
 
@@ -70,20 +67,19 @@ $(document).ready(function() {
 
     return tmplt;
   }
-  function slider_move(parents, newV, max) {
+  function slider_move(parents, newV, max, side) {
     var slider_new_val = newV;
 
     var slider_fill    = parents.find('.slider-fill');
     var slider_handle  = parents.find('.slider-handle');
     var range          = parents.find('input[type="range"]');
-
-    slider_fill.css('width', slider_new_val/max*100 +'%');
+  
+    slider_fill.css('width', slider_new_val/max*100 +'%').css(side, "0");
     slider_handle.css({
-      'left': slider_new_val/max*100 +'%',
       'transition': 'none',
       '-webkit-transition': 'none',
       '-moz-transition': 'none'
-    });
+    }).css(side, slider_new_val/max*100 +'%',);
 
     range.val(slider_new_val);
 
