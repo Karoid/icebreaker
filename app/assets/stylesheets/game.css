@@ -43,6 +43,7 @@ margin: 0; padding: 0;
 }
 .users{
     display: flex;
+    position:fixed;
     flex-wrap: nowrap;
     width: 100vw;
     max-width: 100%;
@@ -52,14 +53,13 @@ margin: 0; padding: 0;
     background-color: #d8f3fa;
     font-size: small;
     height:14vh;
-    -webkit-transition: height 1s; /* Safari */
-    transition: height 1s;
 }
 .users.ready{
+    position:fixed;
     height:100vh;
     max-height:100vh;
-    -webkit-transition:all 1s; /* Safari */
-    transition:all 1s;
+    opacity:1;
+    z-index:999;
 }
 .section {
     height:8vh;
@@ -300,6 +300,122 @@ div.personal_card_name {
     line-height: 9vh;
     font-size: 1.5rem;
     font-family: 'BM HANNA';
+}
+
+/*메뉴바 CSS */
+html.open {
+    overflow: hidden;
+  }
+
+  ul,li {list-style-type:none}
+
+  ul li>a {
+    width: 100%;
+	background:#d8f3fa;
+	border-top:1px solid #010101; border-bottom:1px solid #010101;
+	color:#1995ad;
+  }
+  h3:hover{
+  background-color: #d8f3fa;
+  }
+  h3 {
+    margin-top: 2.5vh;
+  }
+  a {
+    font-size:1.3rem;
+    font-family: 'BM HANNA';
+    text-decoration:none;
+    color: #264971;
+  }
+  .btn {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 1;
+    background-image: url("http://s1.daumcdn.net/cfs.tistory/custom/blog/204/2048858/skin/images/menu.png");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+
+  .close {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    background-image: url("http://s1.daumcdn.net/cfs.tistory/custom/blog/204/2048858/skin/images/close.png");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+
+  #menu {
+    width: 50vw;
+    height: 50%;
+    position: fixed;
+    top: 0px;
+    right: -80vw;
+    z-index: 10;
+    border: 1px solid #c9c9c9;
+    background-color: white;
+    text-align: center;
+    transition: All 0.2s ease;
+    -webkit-transition: All 0.2s ease;
+    -moz-transition: All 0.2s ease;
+    -o-transition: All 0.2s ease;
+  }
+
+  #menu.open {
+    right: -3px;
+  }
+
+  .menu_button {
+    background-color: #d8f3fa;
+    border: 0.1px solid #FFFFFF;
+    height: 9vh;
+  }
+  .page_cover.open {
+    display: block;
+  }
+
+  .page_cover {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 4;
+    display: none;
+  }
+  #menu_img{
+    width: 20vw;
+    margin-top: 5vw;
+    margin-right: 3vw;
+    cursor: pointer;
+
+  }
+
+
+/*게임 종료시 css*/
+#screen{
+    position: absolute;
+    width: 90vw;
+    height: 85vh;
+    top: 12.5vh;
+    left: 5vw;
+    background: white;
+    z-index: 9999;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+#screen .win_profile{
+    
 }
 
 /* Desktop Device */

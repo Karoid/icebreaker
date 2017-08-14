@@ -78,10 +78,10 @@ class GameController < WebsocketRails::BaseController
       when "start" then turn_question_end
       when "turn_question_end" then turn_answer_end
       when "turn_answer_end" then turn_questioner_answer_end
+        #abandon deck에 광역카드id가 두개면 turn_questioner_answer_end 함수에서 평소 로직이 아닌 gameend함수 실행
       when "turn_questioner_answer_end" then question
       when "question" then turn_question_end
       #when "question" then game_end
-      #when "game_end" then turn_question_end
     end
     
   end
@@ -97,7 +97,7 @@ class GameController < WebsocketRails::BaseController
       room = Room.find(player.room_id)
       if room.abandon_deck != nil
         abandon_deck = JSON.parse(room.abandon_deck)
-      else10
+      else
         abandon_deck = []
       end
       abandon_deck.push(player.card_id)

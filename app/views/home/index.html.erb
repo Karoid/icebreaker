@@ -89,6 +89,8 @@
           dispatcher.unbind('game.room_connect_status')
         }
       })
+      var audio = new Audio('/sounds/Tick.mp3')
+      audio.play
     }
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {

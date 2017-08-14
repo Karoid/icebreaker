@@ -3,36 +3,65 @@ $(document).ready(Melting_Talk_Logic.onload)
 
 //나갈때
 $(window).bind('beforeunload', function() {
-    //확인 창을 띄우지 않으려면 아무 내용도 Return 하지 마세요!! (Null조차도)
-    return '게임을 나가시겠습니까?'
+  //확인 창을 띄우지 않으려면 아무 내용도 Return 하지 마세요!! (Null조차도)
+  return '게임을 나가시겠습니까?'
 });
 $(window).unload(function(){
   dispatcher.trigger('game.disconnect', message);
 });
 
 function Clock(total_time, side){
-    var slider = $("div.rkmd-slider>input")
-    var slider_rkmd = $("div.rkmd-slider")
-    var time = 0
-    //slider 길이를 total_time으로 바꾼다.
-    slider.attr('max',total_time)
-    // 슬라이더 초기화
-    if (slider_rkmd.find('.slider-fill')) {
-        var slider_fill    = slider_rkmd.find('.slider-fill');
-        var slider_handle  = slider_rkmd.find('.slider-handle');
-        slider_fill.attr('style','')
-        slider_handle.attr('style','')
-    }
-    //1초마다 값을 1씩 올린다
-    var timer = setInterval(function(){
-        time += 1
-        $('.rkmd-slider').rkmd_rangeSlider({value: time, max: total_time}, side);
-    },1000)
-    // total_time에 도달하면 인터벌을 끝낸다
-    setTimeout(function() {clearInterval(timer)}, 1000*total_time);
-    return timer
+  var slider = $("div.rkmd-slider>input")
+  var slider_rkmd = $("div.rkmd-slider")
+  var time = 0
+  //slider 길이를 total_time으로 바꾼다.
+  slider.attr('max',total_time)
+  // 슬라이더 초기화
+  if (slider_rkmd.find('.slider-fill')) {
+    var slider_fill    = slider_rkmd.find('.slider-fill');
+    var slider_handle  = slider_rkmd.find('.slider-handle');
+    slider_fill.attr('style','')
+    slider_handle.attr('style','')
+  }
+  //1초마다 값을 1씩 올린다
+  var timer = setInterval(function(){
+    time += 1
+    $('.rkmd-slider').rkmd_rangeSlider({value: time, max: total_time}, side);
+  },1000)
+  // total_time에 도달하면 인터벌을 끝낸다
+  setTimeout(function() {clearInterval(timer)}, 1000*total_time);
+  return timer
 }
 function loadCard () {
-    dispatcher.trigger('game.get_card',message);
+  dispatcher.trigger('game.get_card',message);
 }
-          
+
+
+function audio_button () {
+  var button_audio = new Audio('/sounds/ButtonPush.mp3')
+  $('.button').click(function() {
+    button_audio.play();
+  });
+}
+
+
+//메뉴바..?
+$(document).ready(function() {
+  $(".btn").click(function() {
+    $("#menu,.page_cover,html").addClass("open");
+  });
+  
+  window.onhashchange = function() {
+    if (location.hash != "#open") {
+      $("#menu,.page_cover,html").removeClass("open");
+    }
+  }
+  
+  $('.close').click(function(){
+    $("#menu,.page_cover,html").removeClass("open");
+  })
+  
+  $('.page_cover').click(function(){
+    $("#menu,.page_cover,html").removeClass("open");
+  })
+});

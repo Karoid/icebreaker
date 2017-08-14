@@ -27,13 +27,13 @@ $(document).ready(function(){
     </div>
     <div class="section">
         <div class="user1">
-        <img src='<%= asset_path 'boy1.png'%>' alt='boy1'/>
+        <img src='/images/profile/boy1.png' alt='boy1'/>
         <div class="player_username">
         <span>user1</span>
         </div>
         </div>
         <div class="user2">
-        <img src='<%= asset_path 'boy2.png'%>' alt='boy2'/>
+        <img src='/images/profile/boy2.png' alt='boy2'/>
         <div class="player_username">
         <span>user2</span>
         </div>
@@ -41,26 +41,26 @@ $(document).ready(function(){
     </div>
     <div class="section">
         <div class="user3">
-        <img src='<%= asset_path 'girl1.png'%>' alt='girl1'/>
+        <img src='/images/profile/girl1.png' alt='girl1'/>
         <div class="player_username">
         </div>
         </div>
 
         <div class="user4">
-        <img src='<%= asset_path 'girl2.png'%>' alt='boy2'/>
+        <img src='/images/profile/girl2.png' alt='boy2'/>
         <div class="player_username">
         </div>
         </div>
     </div>
     <div class="section">
         <div class="user5">
-        <img src='<%= asset_path 'boy1.png'%>' alt='boy1'/>
+        <img src='/images/profile/boy1.png' alt='boy1'/>
         <div class="player_username">
         </div>
         </div>
 
         <div class="user6">
-        <img src='<%= asset_path 'boy1.png'%>' alt='boy1'/>
+        <img src='/images/profile/boy2.png' alt='boy1'/>
         <div class="player_username">
         </div>
         </div>
@@ -75,7 +75,44 @@ $(document).ready(function(){
 <div class="container">
 <div class="header">
     <a href="/"><i id="back" class="fa fa-undo" style="cursor:pointer;"></i></a>
-    <a href="/"><i id="menu" class="fa fa-bars" style="cursor:pointer;"></i></a>
+    
+    <!--메뉴바--->
+    <div class="btn"></div>
+      <div class="page_cover"></div>
+      <div id="menu">
+        <div class="close"></div>
+        <div class = "menus">
+          <div class="menu_img">
+          <ul>
+            <li>
+              <img src="http://images.clipartpanda.com/business-person-silhouette-33750.png" id="menu_img">
+            </li>
+          </div>
+          <div class= "menu_button">
+        		<li>
+        			<a href="/"><h3><span class="icon-dashboard"></span>HOME</h3></a>
+        		</li>
+          </div>
+          <div class= "menu_button">
+            <li>
+        			<a href="/"><h3><span class="icon-info"></span>UserInfo</h3></a>
+        		</li>
+          </div>
+          <div class= "menu_button">
+        		<li>
+        			<a href="/"><h3><span class="icon-tutorial"></span>Tutorial</h3></a>
+        		</li>
+          </div>
+          <div class="menu_button">
+        		<li>
+        			<a href="/"><h3><span class="icon-set"></span>Settings</h3></a>
+        		</li>
+          </div>
+      	</ul>
+      </div>
+      <!--메뉴바끝-->
+
+  </div>
     <div class="playingCard">
         <img id="c_card_image" width="50" height="50" src="/images/cards/card-02.png">
         <div class="topic" id="topic">배고픔</div>
@@ -84,7 +121,7 @@ $(document).ready(function(){
 <div class="top">
     <div class="center">
         <div id="askuser">
-            <img src='<%= asset_path 'girl1.png'%>' alt='girl1'/>
+            <img src='/images/profile/boy1.png' alt='girl1'/>
             <label id="question_player"></label>
         </div>
         <div class="timer">
@@ -103,7 +140,7 @@ $(document).ready(function(){
             </main>
         </div>
         <div id="answeruser">
-            <img src='<%= asset_path 'girl1.png'%>' alt='girl1'/>
+            <img src='/images/profile/girl1.png' alt='girl1'/>
             <label id="answer_player"></label>
         </div>
     </div>
@@ -121,10 +158,10 @@ $(document).ready(function(){
             <img id="sep_bar" src="<%= asset_path 'sep_bar.png'%>" alt='img'>
         </div>
         <div class="p_card_name">
-            <span id = "text_name">이별</span>
+            <span id = "text_name">로딩중</span>
         </div>
         <div class="p_card_content">
-            <span id = "text_content">어린시절 당신의 첫이별은<br> 어떠했나요?</span>
+            <span id = "text_content">로딩중</span>
         </div>
         
         <div class="p_card_num">

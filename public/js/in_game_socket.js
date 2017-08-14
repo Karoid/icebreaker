@@ -126,4 +126,6 @@ function change_card(data){
       case "event_card":
           $("#text_type").html("E")
   }
+  var audio = new Audio('/sounds/WooshMark.mp3')
+  audio.play()
 }
