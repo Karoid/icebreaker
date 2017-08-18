@@ -21,6 +21,7 @@ class GameController < WebsocketRails::BaseController
          player.room_id = room_id
          player.username = current_user.username
          player.online = true
+         player.point = 0
          player.save
          WebsocketRails[("room_"+message).to_sym].trigger(:player_enter, {player_info: player})
       end

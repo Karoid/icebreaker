@@ -2,6 +2,7 @@
 
 <script>
     var my_player_id = <%=current_user.player.id%>
+
 </script>
 <script src="https://use.fontawesome.com/84384b689a.js"></script>
 
@@ -16,13 +17,14 @@ $(document).ready(function(){
 })
 </script>
 <%end%>
+
 <link rel="stylesheet" type="text/css" href="/css/slider.css">
 <script src="/js/slider.js"></script>
 
 <div class="users ready" id="ready">
     <div class="section_header">
         <div class = "room_code">
-        <span>방번호: <%= $r %></span>
+        <span>방번호: </span>
         </div>
     </div>
     <div class="section">
@@ -74,7 +76,7 @@ $(document).ready(function(){
 
 <div class="container">
 <div class="header">
-    <a href="/"><i id="back" class="fa fa-undo" style="cursor:pointer;"></i></a>
+    <a href="javascript:null"><i id="back" class="fa fa-undo" style="cursor:pointer;"></i></a>
     
     <!--메뉴바--->
     <div class="btn"></div>
@@ -86,26 +88,32 @@ $(document).ready(function(){
           <ul>
             <li>
               <img src="http://images.clipartpanda.com/business-person-silhouette-33750.png" id="menu_img">
+              <p id="user_id"><%=current_user.player.username%></p>
+              <span>point: </span><span id="user_point">0</span>
             </li>
           </div>
           <div class= "menu_button">
         		<li>
-        			<a href="/"><h3><span class="icon-dashboard"></span>HOME</h3></a>
+        			<img src="http://images.clipartpanda.com/business-person-silhouette-33750.png" id="menu_button">
+              <p id="other_id">el.username</p>
         		</li>
           </div>
           <div class= "menu_button">
             <li>
-        			<a href="/"><h3><span class="icon-info"></span>UserInfo</h3></a>
+        			<img src="http://images.clipartpanda.com/business-person-silhouette-33750.png" id="menu_button">
+              <p id="other_id">el.username</p>
         		</li>
           </div>
           <div class= "menu_button">
         		<li>
-        			<a href="/"><h3><span class="icon-tutorial"></span>Tutorial</h3></a>
+        		<img src="http://images.clipartpanda.com/business-person-silhouette-33750.png" id="menu_button">
+              <p id="other_id">el.username</p>
         		</li>
           </div>
           <div class="menu_button">
         		<li>
-        			<a href="/"><h3><span class="icon-set"></span>Settings</h3></a>
+        			<img src="http://images.clipartpanda.com/business-person-silhouette-33750.png" id="menu_button">
+              <p id="other_id">el.username</p>
         		</li>
           </div>
       	</ul>
@@ -175,4 +183,11 @@ $(document).ready(function(){
         질문중 · · ·
     </div>
 </div>
+</div>
+<div id="screen">
+  <div class="voted">
+    <span class="notice"> 가장 재밌는 이야기를 한<br>플레이어를 선정해주세요!!</span>
+  </div>
+  <div id="vote_content">
+  </div>
 </div>

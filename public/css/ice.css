@@ -132,6 +132,7 @@ a:hover{
 /* Button modifiers */
 
 .buttonBlue {
+  font-size: 1.4rem;
   background: white;
   text-shadow: 0.2px 0.2px 0 rgba(39, 110, 204, .5);
 }

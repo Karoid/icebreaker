@@ -30,9 +30,9 @@ normal.cards.create(type: "question_card", keyword: "음식", image_url:"/images
 
 normal.cards.create(type: "wide_range_card", keyword: "흑역사", image_url:"/images/cards/card-14.png", description:"당신의 부끄럽고 창피한 경험을 알려주세요")
 normal.cards.create(type: "wide_range_card", keyword: "별명", image_url:"/images/cards/card-15.png", description:"나의 독특한 별명을 나누어주세요")
-normal.cards.create(type: "wide_range_card", keyword: "재사용", image_url:"/images/cards/card-16.png", description:"방금 버린 카드를 다시 가져와서 사용합니다")
+#normal.cards.create(type: "wide_range_card", keyword: "재사용", image_url:"/images/cards/card-16.png", description:"방금 버린 카드를 다시 가져와서 사용합니다")
 
-normal.cards.create(type: "event_card", keyword: "역전", image_url:"/images/cards/card-17.png", description:"모든 플레이어의 점수를 초기화합니다")
-normal.cards.create(type: "event_card", keyword: "조커", image_url:"/images/cards/card-18.png", description:"아무 질문이 가능합니다. 답변자의 질문이 괜찮은지에 따라 얻을 포인트를 결정합니다.")
-normal.cards.create(type: "event_card", keyword: "조커", image_url:"/images/cards/card-19.png", description:"아무 질문이 가능합니다. 답변자의 질문이 괜찮은지에 따라 얻을 포인트를 결정합니다.")
-normal.cards.create(type: "event_card", keyword: "무인도", image_url:"/images/cards/card-20.png", description:"당신이 무인도에 갇혔을 때 같이 게임하는 사람 중 절반만 데려갈 수 있다면 누구를?")
+#normal.cards.create(type: "event_card", keyword: "역전", image_url:"/images/cards/card-17.png", description:"모든 플레이어의 점수를 초기화합니다")
+normal.cards.create(type: "wide_range_card", keyword: "조커", image_url:"/images/cards/card-18.png", description:"아무 질문이 가능합니다. 답변자의 질문이 괜찮은지에 따라 얻을 포인트를 결정합니다.")
+normal.cards.create(type: "wide_range_card", keyword: "조커", image_url:"/images/cards/card-19.png", description:"아무 질문이 가능합니다. 답변자의 질문이 괜찮은지에 따라 얻을 포인트를 결정합니다.")
+#normal.cards.create(type: "event_card", keyword: "무인도", image_url:"/images/cards/card-20.png", description:"당신이 무인도에 갇혔을 때 같이 게임하는 사람 중 절반만 데려갈 수 있다면 누구를?")

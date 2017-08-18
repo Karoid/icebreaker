@@ -14,10 +14,10 @@ class HomeController < ApplicationController
        host.user_id = current_user.id
        host.room_id = room.id
        host.username = current_user.username
+       host.point = 0
        host.online = true
        host.save
 
-    
        redirect_to '/home/game/'+$r.to_s
     end
 

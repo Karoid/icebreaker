@@ -1,5 +1,5 @@
 function do_game_from_broadcast(data){
-  console.log("서버로부터 정보 받음",data)
+//  console.log("서버로부터 정보 받음",data)
   switch (data.state) {
     case 'ready':
       do_ready(data.player);
@@ -19,8 +19,14 @@ function do_game_from_broadcast(data){
     case 'question':
       do_question(data);
       break;
+    case 'vote_mvp':
+      do_vote_mvp(data);
+      break;
+    case 'vote_result':
+      do_vote_result(data);
+      break;
     case 'game_end':
-      do_game_end(data)
+      do_game_end(data);
       break;
   }
 }
@@ -28,7 +34,6 @@ function do_game_from_broadcast(data){
 //action
 
 function do_ready(player) {
-    console.log('do_ready')
     $('.id_'+player.id).css('background','#00BCD4');
     audio_button();
 }
@@ -42,7 +47,7 @@ function do_start(data){
     
   //플레이어들이 받은 카드의 내용을 받기 위해 서버에 정보를 요청합니다
   dispatcher.trigger('game.info',message);
-  loadCard()
+  dispatcher.trigger('game.get_card',message);
 
   //레디상태의 화면을 플레이 화면으로 전환하고, 레디상태를 지웁니다
   $('.room_code').remove()
@@ -65,8 +70,8 @@ function do_start(data){
     })
   }
 
-  $('#question_player').html(data.question_player.username);
-  $('#answer_player').html(data.answer_player.username);
+  $('label#question_player').html(data.question_player.username);
+  $('label#answer_player').html(data.answer_player.username);
 }
 
 function do_turn_question_end(data){
@@ -120,8 +125,17 @@ function do_turn_questioner_answer_end(data){
   var player = data.question_player
   
   clearInterval(timer_tag)
+  console.log("질문자("+player.username+")의 점수는? :"+ player.point)
+  if (player.id == my_player_id) {
+    $('span#user_point').html(player.point);
+  }else{
+    $('.id_'+player.id+' .point').html(player.point)
+  }
   
-  loadCard()
+
+  //방금 질문자의 카드를 바꿔주고, 모두 보이는 카드를 선택중으로 만듭니다
+  dispatcher.trigger('game.get_card',message);
+  
     
   if(my_player_id == player.id){
     $('.button').html("다음 질문자 선택 중");
@@ -136,13 +150,19 @@ function do_turn_questioner_answer_end(data){
       dispatcher.trigger('game.play_turn');
       console.log('next question click4-1')
     });
-    Player();
+    audio_button();
   }
 }
 
 function do_question(data){
   var player = data.question_player
   console.log('question5',player)
+  //질문자와 답변자가 바뀌므로 표시를 해줍니다
+  $('label#question_player').html(data.question_player.username);
+  $('label#answer_player').html(data.answer_player.username);
+  //질문자 카드를 모두에게 갱신해줍니다
+  dispatcher.trigger('game.get_card',message);
+  
   if(my_player_id == player.id){
     $('.button').html("질문완료");
     $('.button').unbind("click").click(function(){
@@ -159,9 +179,28 @@ function do_question(data){
   }
 }
 
+function do_vote_mvp(data){
+  $('div#screen').css('display','block')
+  var content = ""
+  for (i = 0; i < data.player_info.length; i++) {
+    content += "<div class='voted'><label for='"+data.player_info[i].id+"' class='label--radio'><input type='radio' class='radio' name='vote' id='"+data.player_info[i].id+"' value='"+data.player_info[i].id+"'>"
+    +data.player_info[i].username+"</label></div>";
+    console.log(content)
+  }
+  content+= '<br><button>제출</button>'
+  $('#vote_content').html(content)
+  
+}
+
+function do_vote_result(data){
+  
+  
+}
 function do_game_end(data){
   // 화면을 전환
-  var screen = '<div id="screen"><img/><span>Karoid가 MVP로 선정되었습니다!</span></div>'
-  $('body').append(screen)
+  var screen = '<div id="screen"><img/><span></span></div>'
+  
+  $('div#screen').css('display','block')
+  $('div#screen>span').html(data.mvp+'가 mvp로 뽑혔습니다.')
 }
 

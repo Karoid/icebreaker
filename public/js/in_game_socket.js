@@ -24,8 +24,10 @@ var Melting_Talk_Logic = {
     channel.bind('game_data', do_game_from_broadcast);
     
     channel.bind('player_disconnect', function(data) {
-      $('.id_'+data.player_info.id).hide().removeClass('.id_'+data.player_info.id)
+      $('.id_'+data.player_info.id).remove()
     });
+    
+    menu_bar_initialize()
   },
   ready: function(data){
     /***** trigger *****/
@@ -35,13 +37,37 @@ var Melting_Talk_Logic = {
     });
     
     /***** bind *****/
+    //방번호를 보여줍니다
+    $('.room_code').html('<span>방번호:'+room_code+'</span>')
+    
     // 참여된 방에서 사용자가 접속하면 사용자를 추가합니다.
     channel.bind('player_enter', function(data) {
       initial_room_state.player_info.push(data.player_info)
       index = initial_room_state.player_info.length
       el = data.player_info
-      console.log(index,el, $('.users>.user'+(index+1)))
-      $('.users>div.section>.user'+(index+1)).css("display","inline-block").addClass("id_"+el.id).children('.player_username').html(el.username)
+      var fin = false
+      html_element = "<div class='user1 id_"+el.id+"'>"+
+        "<img src='/images/profile/boy1.png' alt='boy1'/>"+
+        "<div class='player_username'>"+
+        "<span>"+el.username+"</span>"+
+        "</div>"+
+        "</div>"
+      $('.section').each(function(index,value){
+        if (!fin && $(value).children('.user1').length < 2) {
+          fin = true
+          return $(value).append(html_element)
+        }
+      })
+      
+      if (el.id != my_player_id) {
+      menu_element = "<div class='menu_button id_"+el.id+"'>"+
+       		"<li>"+
+       			"<img src='/images/profile/boy1.png' id='menu_button'>"+
+             "<p id='other_id'>"+el.username+": <span class='point'>"+el.point+"</span></p>"+
+      	 	"</li>"+
+         "</div>"
+        $(".menus").append(menu_element)
+      }
     });
   },
   start: function(data){
@@ -69,63 +95,30 @@ function initialize_game(data) {
 
 function initialize_player(data){
   // 플레이어 데이터를 읽어서 표시합니다.
-  $('.users>div.section>div').not(".ready").hide()
+  $('.users>div.section>div').not(".ready").remove()
+  $('.menus>.menu_button').remove()
   data.player_info.forEach(function(el,index) {
-    html_element = $('.users>div.section>.user'+(index+1))
-    html_element.css("display","inline-block").addClass("id_"+el.id).children('.player_username').html(el.username)
+  html_element = "<div class='user1 id_"+el.id+"'>"+
+      "<img src='/images/profile/boy1.png' alt='boy1'/>"+
+      "<div class='player_username'>"+
+      "<span>"+el.username+"</span>"+
+      "</div>"+
+      "</div>"
+
+    $(".section").eq(Math.floor(index/2)).append(html_element)
+    
+    if (el.id != my_player_id) {
+      menu_element = "<div class='menu_button id_"+el.id+"'>"+
+       		"<li>"+
+       			"<img src='/images/profile/boy1.png' id='menu_button'>"+
+             "<p id='other_id'>"+el.username+": <span class='point'>"+el.point+"</span></p>"+
+      	 	"</li>"+
+         "</div>"
+      $(".menus").append(menu_element)
+    }
+   
     if(el.point == 1 && data.room_info.action == 'ready'){
       do_ready(el)
     }
   });
-}
-
-function change_card(data){
-  //덱에서 맞는 카드를 찾는다
-  var my_card_id, title_card_id
-  var card_info, title_info = new Object()
-
-  for (var j = 0; j < data.player_info.length; j++) {
-    if (data.player_info[j].id == my_player_id) {
-      my_card_id = data.player_info[j].card_id
-    }
-    if (data.player_info[j].id == data.room_info.question_id) {
-      title_card_id = data.player_info[j].card_id
-    }
-  }
-  for (var i = 0; i < data.deck_info.length; i++) {
-      if (data.deck_info[i].id == my_card_id) {
-          card_info = data.deck_info[i]
-      }
-      
-      if (data.deck_info[i].id == title_card_id) {
-          title_info = data.deck_info[i]
-      }
-  }
-  
-  console.log("모든 데이터 " + data + "\n",
-  "내 카드 데이터 " + card_info + "\n",
-  "질문자 데이터 " + title_info + "\n")
-  //그 카드의 정보를 화면에 띄운다
-
-  var image_url = card_info.image_url;
-  var type = card_info.type;
-  var point = card_info.point;
-  var keyword = card_info.keyword;
-  var content = card_info.description;
-  $("#text_name").html(keyword)
-  $("#text_content").html(content)
-  $("#card_image").attr('src',image_url);
-  $("#text_num").html(point)
-  $("#topic").html(title_info.keyword);
-  $('#c_card_image').attr('src',title_info.image_url);
-  switch (type) {
-      case "question_card":
-          $("#text_type").html("Q")
-      case "wide_rage_card":
-          $("#text_type").html("☆")
-      case "event_card":
-          $("#text_type").html("E")
-  }
-  var audio = new Audio('/sounds/WooshMark.mp3')
-  audio.play()
 }
