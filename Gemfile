@@ -35,6 +35,8 @@ gem 'websocket-rails', github: 'recurser/websocket-rails', branch: 'bugfix/388-l
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do
+  #gem 'pg',      :group => :production
+  gem 'pg'
   #compress asset in heroku
   gem 'heroku-deflater'
 end
