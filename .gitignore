@@ -18,4 +18,4 @@
 /.c9
 
 # Ignore card images
-/public/images/cards/*
+#/public/images/cards/*
