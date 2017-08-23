@@ -112,9 +112,6 @@ margin: 0; padding: 0;
     top:85vh;
     height:15vh;
 }
-/*.users #readybutton{
-    display: none;
-}*/
 
 .users.ready #readybutton{
     height: 100%;
@@ -507,24 +504,11 @@ button {
   font-size:12px;
   cursor: pointer;
   transition: all 0.25s ease;
-  &:hover {
-    color:white;
-    background: $green;
-  }
-  &:active {
-    //letter-spacing: 2px;
-    letter-spacing: 2px ;
-  }
-  &:after {
-    content:"SUBMIT";
-  }
-}
-#screen .win_profile{
-    
 }
 
 /* Desktop Device */
-/*@media all and (min-width:768px) {
+/*
+@media all and (min-width:768px) {
 .users{
     display: inline-block;
     max-width: 100vw;
@@ -602,5 +586,5 @@ div.personal_card_name {
     max-width: 30vw;
     max-height: 40vh;
     border-radius: 5%;
-}*/
 }
+*/
