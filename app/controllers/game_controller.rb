@@ -82,7 +82,7 @@ class GameController < WebsocketRails::BaseController
         #abandon deck에 광역카드id가 두개면 turn_questioner_answer_end 함수에서 평소 로직이 아닌 gameend함수 실행
       when "turn_questioner_answer_end" then question
       when "question" then turn_question_end
-      #when "question" then game_end
+      when "vote_mvp" then vote_result
     end
     
   end

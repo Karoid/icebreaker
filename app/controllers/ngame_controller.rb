@@ -99,7 +99,15 @@ module NgameController
     current_room = Room.find(current_player.room_id)
     all_player = Player.where(room_id: current_room.id).all
     current_room.update(action: "vote_mvp")
-    
+    #question_id를 총 투표수 저장하기 위한 공간으로 쓰기위해 0으로 만듦
+    current_room.update(question_id: 0)
+    # 꼴찌는 answer_id로 저장 후 point초기화하여 투표수 저장
+    current_room.answer_id = all_player.minimum(:point)
+    current_room.players.each do |p|
+      if p.point != 0
+        p.update(point: 0)
+      end
+    end
     WebsocketRails[("room_"+current_room.code.to_s).to_sym].trigger(:game_data, {state: "vote_mvp", player_info: all_player})
     #return vote_result
     
@@ -110,28 +118,37 @@ module NgameController
     current_player = current_user.player
     current_room = Room.find(current_player.room_id)
     all_player = Player.where(room_id: current_room.id).all
-    # 꼴찌는 answer_id로 저장 후 point초기화하여 투표수 저장 
-    answer_player = all_player.minimum(:point)
-    current_room.players.each do |p|
-      if p.point != 0
-        p.point=0
-      end
+    
+    # 받은 투표수 만큼 포인트를 올린다
+    # message 가 투표한 player의 id
+    vote_player = Player.find(message)
+    vote_player.point = vote_player.point + 1
+    vote_player.save
+
+    # toInt(message) => find => point++ => if 투표가 끝나면 
+    current_room.question_id = current_room.question_id + 1
+    current_room.save
+    
+    if current_room.players.length == current_room.question_id
+      return game_end
     end
     
-    #WebsocketRails[("room_"+current_room.code.to_s).to_sym].trigger(:game_data, {state: "vote_mvp", player_info: mvp})
-    #return game_end
   end
   
   def game_end
     puts "게임 종료 알고리즘"
     current_player = current_user.player
     current_room = Room.find(current_player.room_id)
+    all_player = Player.where(room_id: current_room.id).all
+    
     # 방의 상태를 게임 종료로 전환한다
     current_room.update(action: "game_end")
     # 게임 점수를 비교하여 꼴찌를 알려준다.
     # 만약 동점으로 점수가 낮은 사람이 여러명일 경우 랜덤으로 골라서 뽑는다.
+    mvp = all_player.maximum(:point)
+    WebsocketRails[("room_"+current_room.code.to_s).to_sym].trigger(:game_data, {state: "game_end", player_info: mvp})
     
-    WebsocketRails[("room_"+current_room.code.to_s).to_sym].trigger(:game_data, {state: "game_end"})
+    # 방과 플레이어 DB 삭제
   end
   
 end

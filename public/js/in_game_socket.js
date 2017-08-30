@@ -71,7 +71,13 @@ var Melting_Talk_Logic = {
     });
   },
   start: function(data){
-   // $('.users').removeClass('ready').children(".section").children("div").css("background","");
+    do_start(data)
+  },
+  default: function(data,state){
+    $('.room_code').remove()
+    $('.section .ready').remove()
+    $('.users').fadeOut()
+    window['do_'+state](data);
   }
 }
 
@@ -82,15 +88,22 @@ function initialize_game(data) {
   state = data.room_info.action
   initialize_player(data)
   
+  var essential_data = new Object()
+  essential_data.answer_player = find_player_with_player_id(data, data.room_info.answer_id)
+  essential_data.question_player = find_player_with_player_id(data, data.room_info.question_id)
   switch (state) {
   case 'ready':
     Melting_Talk_Logic.ready(data);
     break;
   case 'start':
-    Melting_Talk_Logic.start(data);
+    Melting_Talk_Logic.start(essential_data);
     break;
+  case 'vote_mvp':
+    do_vote_mvp(data)
+    break;
+  default:
+    Melting_Talk_Logic.default(essential_data,state);
   }
-  
 }
 
 function initialize_player(data){

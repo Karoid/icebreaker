@@ -22,9 +22,6 @@ function do_game_from_broadcast(data){
     case 'vote_mvp':
       do_vote_mvp(data);
       break;
-    case 'vote_result':
-      do_vote_result(data);
-      break;
     case 'game_end':
       do_game_end(data);
       break;
@@ -40,13 +37,12 @@ function do_ready(player) {
 
 
 function do_start(data){
+  console.log(data)
   var player = data.question_player
-  console.log("do start1")
   var audio = new Audio('/sounds/WooshMark.mp3');
   audio.play()
     
   //플레이어들이 받은 카드의 내용을 받기 위해 서버에 정보를 요청합니다
-  dispatcher.trigger('game.info',message);
   dispatcher.trigger('game.get_card',message);
 
   //레디상태의 화면을 플레이 화면으로 전환하고, 레디상태를 지웁니다
@@ -54,7 +50,6 @@ function do_start(data){
   $('.section .ready').remove()
   $('.users').fadeOut()
   timer_tag = Clock(180,"left")
-
   if(my_player_id == player.id){
     $('.button').html("질문완료");
     $('.button').unbind("click").click(function(){
@@ -185,22 +180,24 @@ function do_vote_mvp(data){
   for (i = 0; i < data.player_info.length; i++) {
     content += "<div class='voted'><label for='"+data.player_info[i].id+"' class='label--radio'><input type='radio' class='radio' name='vote' id='"+data.player_info[i].id+"' value='"+data.player_info[i].id+"'>"
     +data.player_info[i].username+"</label></div>";
-    console.log(content)
   }
-  content+= '<br><button>제출</button>'
+  content+= '<br><button id="vote_button">제출</button>'
   $('#vote_content').html(content)
-  
+  return $('#vote_button').unbind("click").click(function(){
+    console.log("클릭")
+    var vote_player = $(":input:radio[name=vote]:checked").val();
+    if (vote_player) {
+     $(this).attr("disabled",true).html("투표 수집중")
+      dispatcher.trigger('game.play_turn',vote_player);
+    }
+  })
 }
 
-function do_vote_result(data){
-  
-  
-}
 function do_game_end(data){
   // 화면을 전환
   var screen = '<div id="screen"><img/><span></span></div>'
   
   $('div#screen').css('display','block')
-  $('div#screen>span').html(data.mvp+'가 mvp로 뽑혔습니다.')
+  $('#vote_content').html(data.mvp+'가 mvp로 뽑혔습니다.')
 }
 

@@ -222,7 +222,7 @@ margin: 0; padding: 0;
 }
 #c_card_image{
     float:left;
-    margin-top: 3vh
+    margin-top: 2vh;
 }
 
 #card_image{
@@ -293,7 +293,7 @@ div.personal_card_name {
     width: 100vw;
     height: 9vh;
     margin: 0 auto;
-    background-color: white;
+    background: linear-gradient( to bottom, white, #d8f3fa );
     line-height: 9vh;
     font-size: 1.5rem;
     font-family: 'BM HANNA';
@@ -331,7 +331,7 @@ html.open {
     right: 0px;
     top: 0px;
     z-index: 1;
-    background-image: url("http://s1.daumcdn.net/cfs.tistory/custom/blog/204/2048858/skin/images/menu.png");
+    background-image: url("menu.png");
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
@@ -344,7 +344,7 @@ html.open {
     position: absolute;
     right: 0px;
     top: 0px;
-    background-image: url("http://s1.daumcdn.net/cfs.tistory/custom/blog/204/2048858/skin/images/close.png");
+    background-image: url("close.png");
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
@@ -431,17 +431,33 @@ html.open {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .voted{
-    margin: 10px auto;
+    margin: 2vh auto;
     width: 80vw;
     font-family: 'BM HANNA';
 }
+.vote{
+    width: 50vw;
+    height: 10vh;
+    margin: 0 auto;
+    margin-top: 5vh;
+    background-image: url("vote.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.vote_content{
+    margin: 10vw auto;
+}
 .notice{
+    text-align: center;
+    line-height: 1.6rem;
+    font-size: 1.2rem;
     font-family: 'BM HANNA';
 }
 
 .label--radio {
   position: relative;
-  margin: .5rem;
+  margin: 15vw;
   font-family: 'BM HANNA';
   line-height: 135%;
   cursor: pointer;
@@ -487,7 +503,7 @@ html.open {
   width: 1rem;
   height: 1rem;
   background: #fff;
-  border: 2px solid #d8f3fa;
+  border: 2px solid #c9c9c9;
   border-radius: 50%;
 }
 
@@ -495,17 +511,23 @@ button {
   outline:none;
   height: 40px;
   text-align: center;
-  width: 90vw;
+  width: 70vw;
+  margin: 0 auto;
+  display: block;
   border-radius:40px;
-  background: #fff;
-  border: 2px solid #d8f3fa;
+  background: #d8f3fa;
+  border: 1px solid #c9c9c9;
   color: black;
   letter-spacing:1px;
-  font-size:12px;
+  font-size:1.1rem;
+  font-family: 'BM HANNA';
   cursor: pointer;
   transition: all 0.25s ease;
 }
-
+button:disabled {
+    border:none;
+    background:none;
+}
 /* Desktop Device */
 /*
 @media all and (min-width:768px) {
