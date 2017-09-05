@@ -261,6 +261,22 @@ margin: 0; padding: 0;
     height:15vh;
     margin: 0 auto;
 }
+#question_player{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: small;
+    white-space: nowrap;
+    width: 55px;
+    display: block;
+}
+#answer_player{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: small;
+    white-space: nowrap;
+    width: 55px;
+    display: block;
+}
 
 #askuser {
     float: left;
@@ -445,8 +461,14 @@ html.open {
     background-position: center;
     background-repeat: no-repeat;
 }
-.vote_content{
+#vote_content{
     margin: 10vw auto;
+    left: 10vw;
+}
+
+#winner, #loser{
+    margin: 10vw auto;
+     left: 10vw;
 }
 .notice{
     text-align: center;

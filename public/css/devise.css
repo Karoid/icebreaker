@@ -221,3 +221,11 @@ form {
     }
 }
 
+/* icon_select */
+.icon{
+  display: block;
+  float: left;
+}
+#animal{
+  width: 20vw;
+}

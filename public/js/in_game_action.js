@@ -52,7 +52,7 @@ function do_start(data){
   timer_tag = Clock(180,"left")
   if(my_player_id == player.id){
     $('.button').html("질문완료");
-    $('.button').unbind("click").click(function(){
+    $('.button').removeAttr("disabled").unbind("click").click(function(){
       dispatcher.trigger('game.play_turn');
     });
     audio_button()
@@ -60,9 +60,7 @@ function do_start(data){
   
   else{
     $('.button').html(data.question_player.username + " 질문중...");
-    $('.button').unbind("click").click(function(){
-      dispatcher.trigger('game.play_turn');
-    })
+    $('.button').unbind("click").attr("disabled",true)
   }
 
   $('label#question_player').html(data.question_player.username);
@@ -197,7 +195,13 @@ function do_game_end(data){
   // 화면을 전환
   var screen = '<div id="screen"><img/><span></span></div>'
   
-  $('div#screen').css('display','block')
-  $('#vote_content').html(data.mvp+'가 mvp로 뽑혔습니다.')
+  $('.notice').html("Winner and Loser");
+  $('div#screen').css('display','block');
+  $('#voted').removeClass('vote');
+  console.log(data)
+  $('#vote_content').html('<p>'+data.mvp.username+'가 mvp로 뽑혔습니다!</p>');
+  $('#vote_content').append('<p>'+data.loser.username+'가 벌칙을 당합니다!</p>');
+  $('div#winner').html('<p>The winner is...</p>');
+  $('div#loser').html('<p>The loser is...</p>');
 }
 

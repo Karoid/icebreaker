@@ -102,7 +102,7 @@ module NgameController
     #question_id를 총 투표수 저장하기 위한 공간으로 쓰기위해 0으로 만듦
     current_room.update(question_id: 0)
     # 꼴찌는 answer_id로 저장 후 point초기화하여 투표수 저장
-    current_room.answer_id = all_player.minimum(:point)
+    current_room.answer_id = all_player.where(point: all_player.minimum(:point)).sample
     current_room.players.each do |p|
       if p.point != 0
         p.update(point: 0)
@@ -145,8 +145,9 @@ module NgameController
     current_room.update(action: "game_end")
     # 게임 점수를 비교하여 꼴찌를 알려준다.
     # 만약 동점으로 점수가 낮은 사람이 여러명일 경우 랜덤으로 골라서 뽑는다.
-    mvp = all_player.maximum(:point)
-    WebsocketRails[("room_"+current_room.code.to_s).to_sym].trigger(:game_data, {state: "game_end", player_info: mvp})
+    mvp = all_player.where(point: all_player.maximum(:point)).sample
+    loser = Player.find(current_room.answer_id)
+    WebsocketRails[("room_"+current_room.code.to_s).to_sym].trigger(:game_data, {state: "game_end", mvp: mvp, loser: loser})
     
     # 방과 플레이어 DB 삭제
   end

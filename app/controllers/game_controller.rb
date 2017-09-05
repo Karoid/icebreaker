@@ -24,6 +24,11 @@ class GameController < WebsocketRails::BaseController
          player.point = 0
          player.save
          WebsocketRails[("room_"+message).to_sym].trigger(:player_enter, {player_info: player})
+       else
+         player = current_user.player
+         player.online = true
+         player.save
+         WebsocketRails[("room_"+message).to_sym].trigger(:player_enter, {player_info: player})
       end
       send_message :room_connect_status, {message: 'room connection success', status:true}, :namespace => 'game'
     else
