@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170531123832) do
     t.integer  "card_id"
     t.string   "card_buff"
     t.string   "username"
+    t.string   "img_url"
     t.boolean  "online"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -67,8 +68,8 @@ ActiveRecord::Schema.define(version: 20170531123832) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "img_url"
     t.string   "username",               default: "", null: false
+    t.string   "img_url"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end

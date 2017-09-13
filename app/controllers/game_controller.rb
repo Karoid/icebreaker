@@ -20,6 +20,7 @@ class GameController < WebsocketRails::BaseController
          player.user_id = current_user.id
          player.room_id = room_id
          player.username = current_user.username
+         player.img_url = current_user.img_url
          player.online = true
          player.point = 0
          player.save
@@ -45,6 +46,7 @@ class GameController < WebsocketRails::BaseController
   def get_card
     room = Room.where(code: message["room_code"]).limit(1)[0]
     room.remain_deck = "[SECRET]"
+    
     send_message :get_card, {player_info: room.players, room_info:room, deck_info: Card.all}, :namespace => 'game'
   end
 

@@ -96,7 +96,7 @@ function change_card(data){
   $("#card_image").attr('src',card_info.image_url);
   $("#text_num").html(card_info.point)
   if (data.room_info.action == 'turn_questioner_answer_end') {
-    $("#topic").html('질문 선택중');
+    $("#topic").html('선택중');
     $('#c_card_image').attr('src','/images/cards/card-16.png');
   }else{
     $("#topic").html(title_info.keyword);

@@ -45,9 +45,12 @@ var Melting_Talk_Logic = {
       initial_room_state.player_info.push(data.player_info)
       index = initial_room_state.player_info.length
       el = data.player_info
+      if(!el.img_url){
+        el.img_url = '/images/profile/boy1.png'
+      }
       var fin = false
       html_element = "<div class='user1 id_"+el.id+"'>"+
-        "<img src='/images/profile/boy1.png' alt='boy1'/>"+
+        "<img src='"+el.img_url+"' alt='boy1'/>"+
         "<div class='player_username'>"+
         "<span>"+el.username+"</span>"+
         "</div>"+
@@ -62,7 +65,7 @@ var Melting_Talk_Logic = {
       if (el.id != my_player_id) {
       menu_element = "<div class='menu_button id_"+el.id+"'>"+
        		"<li>"+
-       			"<img src='/images/profile/boy1.png' id='menu_button'>"+
+       			"<img src='"+el.img_url+"' id='menu_button'>"+
              "<p id='other_id'>"+el.username+": <span class='point'>"+el.point+"</span></p>"+
       	 	"</li>"+
          "</div>"
@@ -111,8 +114,11 @@ function initialize_player(data){
   $('.users>div.section>div').not(".ready").remove()
   $('.menus>.menu_button').remove()
   data.player_info.forEach(function(el,index) {
+    if(!el.img_url){
+        el.img_url = '/images/profile/boy1.png'
+      }
   html_element = "<div class='user1 id_"+el.id+"'>"+
-      "<img src='/images/profile/boy1.png' alt='boy1'/>"+
+      "<img src='"+el.img_url+"' alt='boy1'/>"+
       "<div class='player_username'>"+
       "<span>"+el.username+"</span>"+
       "</div>"+
@@ -128,6 +134,8 @@ function initialize_player(data){
       	 	"</li>"+
          "</div>"
       $(".menus").append(menu_element)
+    }else{
+      $("#menu_img").attr('src',el.img_url)
     }
    
     if(el.point == 1 && data.room_info.action == 'ready'){

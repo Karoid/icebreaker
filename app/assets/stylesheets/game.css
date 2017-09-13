@@ -27,14 +27,20 @@ margin: 0; padding: 0;
 }
 #menu{
     color: black;
-    margin: 1.6vh 2vw 0 41vw;
+    margin: 1.6vh 2vw 0 0;
     font-size: 20px;
     float: left;
 }
 #back{
     color: black;
-    margin:1.6vh 41vw 0 5vw;
     float: left;
+    margin: 1vh 0 0 7vw;
+}
+#question{
+    color: black;
+    float: left;
+    margin: 0.3vh 7vw 0;
+    font-size: 25px;
 }
 .playingCard{
     width: 56vw;
@@ -116,8 +122,8 @@ margin: 0; padding: 0;
 .users.ready #readybutton{
     height: 100%;
     width: 33.5vw;
-    background-color: #444f59;
-    color: white;
+    background-color: white;
+    color: black;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -441,10 +447,16 @@ html.open {
     height: 85vh;
     top: 12.5vh;
     left: 5vw;
-    background: white;
     z-index: 9999;
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background: rgba(255,255,255,1);
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(216,243,250,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(216,243,250,1)));
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(216,243,250,1) 100%);
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(216,243,250,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(216,243,250,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(216,243,250,1) 100%);
 }
 .voted{
     margin: 2vh auto;
@@ -461,20 +473,48 @@ html.open {
     background-position: center;
     background-repeat: no-repeat;
 }
-#vote_content{
+#vote_content1, #vote_content2{
     margin: 10vw auto;
-    left: 10vw;
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: 'BM HANNA';
 }
 
 #winner, #loser{
     margin: 10vw auto;
-     left: 10vw;
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: 'BM HANNA';
 }
 .notice{
+    color: #264971;
+    margin-top: 5vh;
+    margin-bottom: 3vh;
     text-align: center;
     line-height: 1.6rem;
     font-size: 1.2rem;
     font-family: 'BM HANNA';
+}
+
+#exitbutton{
+    font-size: 1.4rem;
+    background: #d8f3fa;
+    text-shadow: 0.2px 0.2px 0 rgba(39, 110, 204, .5);
+    padding: 12px 24px;
+    margin: 0 auto;
+    vertical-align: middle;
+    color: #264971;
+    font-size: 1rem;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    letter-spacing: 1px;
+    background: transparent;
+    border: 0;
+    border-radius: 20px;
+    border-bottom: 2px solid lightgray;
+    cursor: pointer;
+    transition: all 0.15s ease;
 }
 
 .label--radio {
@@ -533,7 +573,6 @@ button {
   outline:none;
   height: 40px;
   text-align: center;
-  width: 70vw;
   margin: 0 auto;
   display: block;
   border-radius:40px;

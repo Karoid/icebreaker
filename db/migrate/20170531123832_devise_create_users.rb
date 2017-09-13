@@ -18,7 +18,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime :last_sign_in_at
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
-      t.string :img_url
+      
 
       ## Confirmable
       # t.string   :confirmation_token
@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       ## Customize
       t.string     :username, null: false, default: ""
-
+      t.string :img_url
       t.timestamps null: false
     end
 

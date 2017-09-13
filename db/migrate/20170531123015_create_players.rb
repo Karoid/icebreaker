@@ -7,6 +7,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.integer :card_id
       t.string :card_buff
       t.string :username
+      t.string :img_url
       t.boolean :online
 
       t.timestamps null: false
